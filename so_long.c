@@ -6,7 +6,7 @@
 /*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 15:36:09 by havoc             #+#    #+#             */
-/*   Updated: 2022/08/10 16:27:18 by hjimenez         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:50:44 by hjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,18 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	validate_map(int fd)
 {
+	char	*string;
 	int		i;
 
 	if(!fd)
 		return (0);
-	i = 10;
-	while(i++)
+	
+	while(printf("-> %s",get_next_line(fd)))
 	{
-		char *string;
-		string = get_next_line(fd);
-		printf("-> %s", string);
-		if(string)
-			free(string);
+		i++;
 	}
+
+	exit(0);
 	return (1);	
 }
 
