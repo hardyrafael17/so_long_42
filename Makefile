@@ -46,7 +46,7 @@ fclean:	clean
 re: fclean all
 
 run: all
-	$(shell ./singleton)
+	$(shell ./so_long)
 
 .PHONY: libs all clean fclean re run cd libft mlx && make
 

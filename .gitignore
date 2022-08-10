@@ -5,3 +5,4 @@ mlx/*.a
 *.o
 libft/*.o
 libft/*.a
+.vscode
