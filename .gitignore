@@ -1,4 +1,7 @@
-singleton
-singleton.o
+.so_long.c.swp
+so_long
 mlx/*.o
 mlx/*.a
+*.o
+libft/*.o
+libft/*.a

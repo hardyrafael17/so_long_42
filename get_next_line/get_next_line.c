@@ -6,11 +6,13 @@
 /*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 08:13:09 by hjimenez          #+#    #+#             */
-/*   Updated: 2022/02/28 18:58:30 by hjimenez         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:06:09 by hjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int BUFFER_SIZE=42;
 
 char	*get_next_line(int fd)
 {
