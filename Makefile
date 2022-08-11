@@ -2,8 +2,8 @@
 # Files
 
 NAME			=	so_long
-LIB_MXL			=	mlx/libmlx.a
-LIB_FT			= 	libft/libft.a
+LIBMXL			=	mlx/libmlx.a
+LIBFT			= 	libft/libft.a
 
 # Sources and objects
 
@@ -14,7 +14,7 @@ OBJS			=	$(SRCS:.c=.o)
 # Literals
 GCC				=	gcc
 FLAGS			=	-Wall -Wextra -Werror
-INCLUDE			=	-Imlx # Includes mlx folder #
+INCLUDE			=	-Imlx Ilibft # Includes mlx folder #
 RM				=	rm -rf
 AR				=	ar rcs
 LIB_MLX			=	cd mlx && make
@@ -26,11 +26,11 @@ LIBRARY_LINK	=	-Lmlx -lmlx -framework OpenGL -framework AppKit #Links apple kit
 all: $(NAME)
 
 $(NAME): $(OBJS) libs
-	@$(GCC) $(FLAGS) $(OBJS) $(LIBRARY_LINK) -o $@
+	$(GCC) $(FLAGS) $(OBJS) $(LIBFT) $(LIBRARY_LINK) -o $@
 
 libs:
-	@$(LIB_MLX)
-	@$(LIB_FT)
+	$(LIB_MLX)
+	$(LIB_FT)
 
 %.o%.c:
 	$(GCC) $(FLAGS) $(INCLUDE) -c $< -o $@
