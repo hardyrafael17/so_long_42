@@ -35,12 +35,10 @@ int	validate_map(int fd)
 	int		i;
 	int		map_width;
 	int		map_height;
-	int		is_player_present;
-	int		are_collectables_present;
 	int		row;
-	int		bottom_row;
-	int		j;
-	int		k;
+	char	*joined;
+	char	*string_hold;
+	char	*holder;
 
 	if(!fd)
 		return (0);
@@ -49,41 +47,42 @@ int	validate_map(int fd)
 	string = get_next_line(fd);
 	map_width = ft_strlen(string);
 	row = 1;
+	joined = string;
 	while(string)
 	{
-		bottom_row = 0;
-		if(map_width != ft_strlen(string))
-			return (0);
-		while(string[i])
+			holder = string;
+			string = get_next_line(fd);	
+			if(!string)
+			{
+					if(ft_strlen(holder) != map_width -1)
+					{
+							printf("wrong width");
+							exit (0);
+					}						
+					while(holder[i])
+					{
+							if(holder[i] != '1')
+							{
+									printf("%s\n", holder);
+									printf("wrong edge bottom, >>>%d<<<\n", holder[i]);
+									exit(0);
+							}
+							i++;
+					}
+			} else {
+					if(ft_strlen(holder) != map_width)
+							printf("wrong width....");
+			}
+		if(string)
 		{
-			if(string[i] == 'P')
-				is_player_present++;
-			if(string[i] == 'C')
-				are_collectables_present++;
-			if((string[i] != '1' && row == 1) || (row != 1 && string[0] != 1) || ( row != 1 && string[map_width - 1] != 1))
-				return (0);
-			++i;
+				holder = joined;
+				joined = ft_strjoin(joined, string);
+				free(holder);
+				++row;	
 		}
-		j = 0;
-		k = 0;
-		while(string[j])
-		{
-			if(string[j] == '1')
-				++k;
-			if(k == map_width)	
-				bottom_row = 1;
-			++j;
-		}
-		printf("%s", string);
-		free(string);
-		string = get_next_line(fd);	
-		++row;
 	}
-	if( bottom_row != 1 || is_player_present != 1 || are_collectables_present < 1)
-		   return (0);	
-
-	exit(0);	
-
+	printf("length -> %d, rows-> %d\n map -> \n%s", ft_strlen(joined), row, joined);
+	exit (0);
 }
 
 int	main(int argc, char *argv[])
