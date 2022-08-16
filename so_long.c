@@ -29,74 +29,19 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	validate_map(int fd)
-{
-	char	*string;
-	int		i;
-	int		map_width;
-	int		map_height;
-	int		row;
-	char	*joined;
-	char	*string_hold;
-	char	*holder;
-
-	if(!fd)
-		return (0);
-	
-	i = 0;
-	string = get_next_line(fd);
-	map_width = ft_strlen(string);
-	row = 1;
-	joined = string;
-	while(string)
-	{
-			holder = string;
-			string = get_next_line(fd);	
-			if(!string)
-			{
-					if(ft_strlen(holder) != map_width -1)
-					{
-							printf("wrong width");
-							exit (0);
-					}						
-					while(holder[i])
-					{
-							if(holder[i] != '1')
-							{
-									printf("%s\n", holder);
-									printf("wrong edge bottom, >>>%d<<<\n", holder[i]);
-									exit(0);
-							}
-							i++;
-					}
-			} else {
-					if(ft_strlen(holder) != map_width)
-							printf("wrong width....");
-			}
-		if(string)
-		{
-				holder = joined;
-				joined = ft_strjoin(joined, string);
-				free(holder);
-				++row;	
-		}
-	}
-	printf("length -> %d, rows-> %d\n map -> \n%s", ft_strlen(joined), row, joined);
-	exit (0);
-}
-
 int	main(int argc, char *argv[])
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
-	int		is_map_valid;
-	FILE	*map;
-	int		fd;
+	t_map	map;
 	
-	fd = open("map.ber", O_RDONLY);
+	if(argc != 2)
+		exit(0);
+	map = validate_map(argv[1]);
+	if(!map.is_valid)
+		exit(0);
 
-	is_map_valid = validate_map(fd);
 	
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 600, "Singleton");

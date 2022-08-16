@@ -18,4 +18,19 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
+
+typedef struct s_map 
+{
+  char		*map_string;
+  int		fd;
+  int		is_valid;
+  size_t	height;
+  size_t	width;
+  size_t	collectables;
+  size_t	player;
+  size_t	enemies;
+}				t_map;
+
+t_map   validate_map(char *map_file_path);
+
 #endif

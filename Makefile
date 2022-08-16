@@ -8,7 +8,7 @@ LIBFT			= 	libft/libft.a
 # Sources and objects
 
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-SRCS			=	so_long.c $(GNL_FILES)
+SRCS			=	so_long.c validate_map.c $(GNL_FILES)
 OBJS			=	$(SRCS:.c=.o)
 
 # Literals

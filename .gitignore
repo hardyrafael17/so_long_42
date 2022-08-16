@@ -6,3 +6,4 @@ mlx/*.a
 libft/*.o
 libft/*.a
 .vscode
+tags
