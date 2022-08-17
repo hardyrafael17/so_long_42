@@ -36,12 +36,13 @@ int	main(int argc, char *argv[])
 	t_data	img;
 	t_map	map;
 	
+	printf("args -> %s, %d\n", argv[1], argc);
 	if(argc != 2)
-		exit(0);
+		exit(0); //Error Handling TODO
 	map = validate_map(argv[1]);
+	printf("Is map valid? %d \n", map.is_valid);
 	if(!map.is_valid)
 		exit(0);
-
 	
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 920, 600, "Singleton");

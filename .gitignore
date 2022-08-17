@@ -7,3 +7,4 @@ libft/*.o
 libft/*.a
 .vscode
 tags
+.vimspector.json

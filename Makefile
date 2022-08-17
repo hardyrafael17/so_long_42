@@ -45,9 +45,12 @@ fclean:	clean
 
 re: fclean all
 
+debug:
+	$(GCC) -g $(FLAGS) $(OBJS) $(LIBFT) $(LIBRARY_LINK) -o $@
+
 run: all
 	$(shell ./so_long)
 
-.PHONY: libs all clean fclean re run cd libft mlx && make
+.PHONY: libs all clean fclean re run cd libft mlx && make debug
 
 
