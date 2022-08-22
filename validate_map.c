@@ -7,7 +7,7 @@ t_map *check_items(t_map *map)
 	i = 0;
 	if(!map->is_valid)
 		return (map);
-	while(map->map_string[i])	
+	while(map->map_string[i])
 	{
 		if(map->map_string[i] == 'C')
 			map->collectables++;
@@ -75,7 +75,7 @@ int check_line(t_map *map, char *line)
 	if(line[map->width - 1] != '\n')
 	{
 		line_holder = line;
-		line = ft_strjoin(line, "\n");	
+		line = ft_strjoin(line, "\n");
 		free(line_holder);
 	}
 	if(map->width != ft_strlen(line))
@@ -83,7 +83,7 @@ int check_line(t_map *map, char *line)
 		printf("no match");
 		map->is_valid = 0;
 		return (0);
-	}	
+	}
 
 	if(!map->map_string)
 	{
@@ -104,7 +104,7 @@ int check_line(t_map *map, char *line)
 t_map validate_map(char *map_file_path)
 {
 	char	*new_line;
-	t_map	map;	
+	t_map	map;
 	map = initialize_map();
 	if(map_file_path)
 		map.fd = open(map_file_path, O_RDONLY);
@@ -112,14 +112,12 @@ t_map validate_map(char *map_file_path)
 		map.is_valid = 0;
 	new_line = get_next_line(map.fd);
 	while(check_line(&map, new_line))
-	{ 
+	{
 		printf("getting new line\n");
-		new_line = get_next_line(map.fd);	
+		new_line = get_next_line(map.fd);
 	}
-	printf("%d\n", map.is_valid);
-	printf("done with lines\n%s", map.map_string);
 	printf("Checking Borders\n");
-	check_borders(&map);	
+	check_borders(&map);
 	printf("Checking Itiems\n");
 	check_items(&map);
 	return (map);

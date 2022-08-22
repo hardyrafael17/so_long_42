@@ -1,56 +1,53 @@
-
 # Files
-
 NAME			=	so_long
-LIBMXL			=	mlx/libmlx.a
-LIBFT			= 	libft/libft.a
+LIBFT			=   libft/libft.a
+LIBMLX			=	mlx/mlxlib.a
 
 # Sources and objects
-
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 SRCS			=	so_long.c validate_map.c $(GNL_FILES)
 OBJS			=	$(SRCS:.c=.o)
 
-# Literals
+#Literals
 GCC				=	gcc
 FLAGS			=	-Wall -Wextra -Werror
-INCLUDE			=	-Imlx Ilibft # Includes mlx folder #
 RM				=	rm -rf
 AR				=	ar rcs
-LIB_MLX			=	cd mlx && make
-LIB_FT			=	cd libft && make
-LIBRARY_LINK	=	-Lmlx -lmlx -framework OpenGL -framework AppKit #Links apple kit
+LIBRARY_LINK_ft	=	-Llibft -lft
+LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # Rules
-
 all: $(NAME)
 
-$(NAME): $(OBJS) libs
-	$(GCC) $(FLAGS) $(OBJS) $(LIBFT) $(LIBRARY_LINK) -o $@
+$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
+	$(GCC) -v $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) -o $@
 
-libs:
-	$(LIB_MLX)
-	$(LIB_FT)
+$(LIBFT):
+	make -C libft
+
+$(LIBMLX):
+	make -C mlx
 
 %.o%.c:
-	$(GCC) $(FLAGS) $(INCLUDE) -c $< -o $@
+	$(GCC) $(FLAGS) -c $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
-	rm -rf $(OBJS);
+	rm -rf $(OBJS)
+	make clean -C libft
+	make clean	-C mlx
 
 fclean:	clean
 	rm -rf $(NAME)
-	cd mlx && make clean 
-	cd libft && make clean
+	make fclean -C libft
+	make clean -C mlx
+	rm -rf .debug
+
+.debug: .main.c $(LIBFT) $(LIBMLX)
+	gcc -g -Llibft -lft .main.c validate_map.c -o .debug
 
 re: fclean all
-
-debug:
-	$(GCC) -g $(FLAGS) $(OBJS) $(LIBFT) $(LIBRARY_LINK) -o $@
 
 run: all
 	$(shell ./so_long)
 
-.PHONY: libs all clean fclean re run cd libft mlx && make debug
-
-
+.PHONY: all clean fclean re run debug

@@ -18,8 +18,7 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-
-typedef struct s_map 
+typedef struct s_map
 {
   char		*map_string;
   int		fd;
@@ -31,6 +30,6 @@ typedef struct s_map
   size_t	enemies;
 }				t_map;
 
-t_map   validate_map(char *map_file_path);
+t_map	validate_map(char *map_file_path);
 
 #endif
