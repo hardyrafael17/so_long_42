@@ -13,12 +13,13 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <stdio.h>
+# include <stdlib.h>
 # include <fcntl.h>
 # include "mlx/mlx.h"
-# include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
+# include "libft/libft.h"
 
-typedef struct s_map
+typedef struct s_map 
 {
   char		*map_string;
   int		fd;

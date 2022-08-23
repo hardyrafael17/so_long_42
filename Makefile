@@ -20,7 +20,7 @@ LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	$(GCC) -v $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) -o $@
+	$(GCC) -v $(FLAGS) $(OBJS) $(LIBRARY_LINK_FT) $(LIBRARY_LINK_MLX) -o $@
 
 $(LIBFT):
 	make -C libft
@@ -42,8 +42,8 @@ fclean:	clean
 	make clean -C mlx
 	rm -rf .debug
 
-.debug: .main.c $(LIBFT) $(LIBMLX)
-	gcc -g -Llibft -lft .main.c validate_map.c -o .debug
+.debug: .main.c $(LIBFT) $(LIBMLX) $(GNL_FILES)
+	gcc -g -Llibft -lft .main.c validate_map.c $(GNL_FILES)	-o .debug
 
 re: fclean all
 
