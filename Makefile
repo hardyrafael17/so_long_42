@@ -13,22 +13,25 @@ GCC				=	gcc
 FLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -rf
 AR				=	ar rcs
-LIBRARY_LINK_ft	=	-Llibft -lft
+LIBRARY_LINK_FT	=	-Llibft -lft
 LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	$(GCC) -v $(FLAGS) $(OBJS) $(LIBRARY_LINK_FT) $(LIBRARY_LINK_MLX) -o $@
+$(NAME): $(OBJS) $(LIBFT)
+	$(GCC) $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
-$(LIBFT):
+.debug: .main.c $(LIBFT) $(GNL_FILES) validate_map.c
+	gcc -g .main.c validate_map.c $(GNL_FILES) $(LIBRARY_LINK_FT) -o .debug
+
+$(LIBFT): $(LIBMLX)
 	make -C libft
 
-$(LIBMLX):
+$(LIBMLX): mlx/mlx.h
 	make -C mlx
 
-%.o%.c:
+%.o%.c: $(SRCS) $(LIBFT)
 	$(GCC) $(FLAGS) -c $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
@@ -42,12 +45,9 @@ fclean:	clean
 	make clean -C mlx
 	rm -rf .debug
 
-.debug: .main.c $(LIBFT) $(LIBMLX) $(GNL_FILES)
-	gcc -g -Llibft -lft .main.c validate_map.c $(GNL_FILES)	-o .debug
-
 re: fclean all
 
 run: all
 	$(shell ./so_long)
 
-.PHONY: all clean fclean re run debug
+.PHONY: all clean fclean re run 

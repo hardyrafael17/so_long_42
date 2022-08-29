@@ -11,26 +11,26 @@
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-# define SO_LONG_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "mlx/mlx.h"
-# include "get_next_line/get_next_line.h"
-# include "libft/libft.h"
+#define SO_LONG_H
+#include "get_next_line/get_next_line.h"
+#include "libft/libft.h"
+#include "mlx/mlx.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct s_map 
-{
-  char		*map_string;
-  int		fd;
-  int		is_valid;
-  size_t	height;
-  size_t	width;
-  size_t	collectables;
-  size_t	player;
-  size_t	enemies;
-}				t_map;
+typedef struct s_map {
+  char *map_string;
+  int fd;
+  int is_valid;
+  size_t height;
+  size_t width;
+  size_t collectables;
+  size_t player;
+  size_t enemies;
+} t_map;
 
-t_map	validate_map(char *map_file_path);
+t_map validate_map(char *map_file_path);
+t_map initialize_map();
 
 #endif

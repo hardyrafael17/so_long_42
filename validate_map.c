@@ -11,12 +11,15 @@ t_map *check_items(t_map *map)
 	{
 		if(map->map_string[i] == 'C')
 			map->collectables++;
-		if(map->map_string[i] == 'P')
+		else if(map->map_string[i] == 'P')
 			map->player++;
-		if(map->map_string[i] == 'E')
+		else if(map->map_string[i] == 'E')
 			map->enemies++;
-		if(map->map_string[i] == '1' || map->map_string[i] == '0')
+		else if(map->map_string[i] == '1' || map->map_string[i] == '0' || map->map_string[i] == '\n')
+		{
+			++i;
 			continue;
+		}
 		else
 		{
 			map->is_valid = 0;
@@ -35,16 +38,19 @@ void check_borders(t_map *map)
 
 	i = 0;
 	if(!map->map_string)
+	{
+		map->is_valid = 0;
 		return;
+	}
 	while(map->map_string[i])
 	{
-		if(i < map->width - 2 && map->map_string[i] != '1')
+		if(i < map->width - 2 && map->map_string[i] != '1') //Frist line check
 			map->is_valid = 0;
 		if(i > (map->width * map->height) - map->width && i < (map->width * map->height) - 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		if((i + 2)%map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if(i%map->width == 0 && map->map_string[i + 1] != '1')
+		if(i%map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		++i;
 	}
@@ -87,7 +93,6 @@ int check_line(t_map *map, char *line)
 
 	if(!map->map_string)
 	{
-		printf("first_match_only");
 		map->map_string = ft_strjoin(line, "");
 		free(line);
 	}
@@ -113,12 +118,9 @@ t_map validate_map(char *map_file_path)
 	new_line = get_next_line(map.fd);
 	while(check_line(&map, new_line))
 	{
-		printf("getting new line\n");
 		new_line = get_next_line(map.fd);
 	}
-	printf("Checking Borders\n");
 	check_borders(&map);
-	printf("Checking Itiems\n");
 	check_items(&map);
 	return (map);
 }
