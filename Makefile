@@ -5,9 +5,11 @@ LIBMLX			=	mlx/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-SRCS			=	so_long.c validate_map.c $(GNL_FILES)
+PROJECT_FILES	=	validate_map.c events.c
+SO_LONG			=	so_long.c
+SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(SO_LONG)
 OBJS			=	$(SRCS:.c=.o)
-
+DEBUG_MAIN		=	.main.c
 #Literals
 GCC				=	gcc
 FLAGS			=	-Wall -Wextra -Werror
@@ -22,8 +24,8 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT)
 	$(GCC) $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
-.debug: .main.c $(LIBFT) $(GNL_FILES) validate_map.c
-	gcc -g .main.c validate_map.c $(GNL_FILES) $(LIBRARY_LINK_FT) -o .debug
+.debug: .main.c $(LIBFT) $(PROJECT_FILES)
+	gcc -g $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_FT) $(LIBRARY_LINK_FT) -o .debug
 
 $(LIBFT): $(LIBMLX)
 	make -C libft
@@ -32,18 +34,18 @@ $(LIBMLX): mlx/mlx.h
 	make -C mlx
 
 %.o%.c: $(SRCS) $(LIBFT)
-	$(GCC) $(FLAGS) -c $(LIBRARY_LINK_FT) $< -o $@
+	$(GCC) $(FLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
-	rm -rf $(OBJS)
+	$(RM) $(OBJS)
 	make clean -C libft
 	make clean	-C mlx
 
 fclean:	clean
-	rm -rf $(NAME)
+	$(RM) $(NAME)
 	make fclean -C libft
 	make clean -C mlx
-	rm -rf .debug
+	$(RM) .debug
 
 re: fclean all
 
