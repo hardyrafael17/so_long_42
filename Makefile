@@ -22,10 +22,10 @@ LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(GCC) $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
+	$(GCC) -g $(FLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
 .debug: .main.c $(LIBFT) $(PROJECT_FILES)
-	gcc -g $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_FT) $(LIBRARY_LINK_FT) -o .debug
+	gcc -g $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o .debug
 
 $(LIBFT): $(LIBMLX)
 	make -C libft

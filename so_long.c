@@ -11,41 +11,46 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "mlx/mlx.h"
 
-typedef struct s_data {
-  void *img;
-  char *addr;
-  int bits_per_pixel;
-  int line_length;
-  int endian;
-} t_data;
+t_image	ft_new_sprite(void *mlx, char *path)
+{
+	t_image	img;
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color) {
-  char *dst;
-
-  dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-  *(unsigned int *)dst = color;
+	img.reference = mlx_xpm_file_to_image(mlx, path, &img.size.x, &img.size.y);
+	img.bits_per_pixel = \
+	mlx_get_data_addr(img.reference, \
+	&img.bits_per_pixel, &img.line_size, &img.endian);
+	return (img);
 }
-int main(int argc, char *argv[]) {
-  void *mlx;
-  void *mlx_win;
-  t_data img;
-  t_map map;
 
-  printf("args -> %s, %d\n", argv[1], argc);
-  if (argc != 2)
-    exit(0); // Error Handling TODO
-  map = validate_map(argv[1]);
-  printf("Is map valid? %d \n", map.is_valid);
-  if (!map.is_valid)
-    exit(0);
-  mlx = mlx_init();
-  mlx_win = mlx_new_window(mlx, 920, 600, "Singleton");
-  img.img = mlx_new_image(mlx, 920, 600);
-  img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-                               &img.endian);
-  my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-  mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-  mlx_loop(mlx);
-  return (0);
+int	main(int argc, char *argv[])
+{
+	t_map		map;
+	t_program	mlx_structure;
+	t_image		image;
+	int numebr;
+
+	if (argc != 2)
+	{
+		printf("Invalid Argument Count\n");
+		exit(0);
+	}
+	map = validate_map(argv[1]);
+	if (!map.is_valid)
+	{
+		printf("Invalid Map\n");
+		exit(0);
+	}
+	a = 2
+	mlx_structure.mlx_pointer = mlx_init();
+	mlx_structure.window = \
+	mlx_new_window(&mlx_structure.mlx_pointer, 960, 800, "So Long");
+	mlx_new_image(&mlx_structure.mlx_pointer, 900, 750);
+	image = ft_new_sprite(&mlx_structure, "./assets/pac_open_left.xpm");
+	mlx_put_image_to_window \
+	(&mlx_structure, &mlx_structure.window, &image.pointer, 0, 0);
+	mlx_loop(mlx_structure.mlx_pointer);
+	mlx_xpm_file_to_imag = 0;
+	return (0);
 }
