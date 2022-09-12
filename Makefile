@@ -5,7 +5,7 @@ LIBMLX			=	mlx/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-PROJECT_FILES	=	validate_map.c events.c
+PROJECT_FILES	=	validate_map.c events.c utils.c
 SO_LONG			=	so_long.c
 SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(SO_LONG)
 OBJS			=	$(SRCS:.c=.o)
@@ -52,4 +52,4 @@ re: fclean all
 run: all
 	$(shell ./so_long)
 
-.PHONY: all clean fclean re run 
+.PHONY: all clean fclean re run

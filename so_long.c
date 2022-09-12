@@ -14,14 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	t_map		map;
-	t_program	mlx;
-	t_image		image;
+	t_program	game;
+    t_map       map;
 
-	if (argc != 2)
 	{
-		printf("Invalid Argument Count\n"); //Error 1
-		exit(0);
+		printf("Invalid Argument Count\n"); //Error 1 exit(0);
 	}
 	map = validate_map(argv[1]);
 	if (!map.is_valid)
@@ -29,12 +26,15 @@ int	main(int argc, char *argv[])
 		printf("Invalid Map\n"); //Error 2
 		exit(0);
 	}
-	mlx_structure.mlx_pointer = mlx_init();
-	mlx_structure.window = \
-	mlx_new_window(&mlx_structure.mlx_pointer, 960, 800, "So Long");
-	mlx_new_image(&mlx_structure.mlx_pointer, 900, 750);
-	image = ft_new_sprite(&mlx_structure, "./assets/pac_open_left.xpm");
-	mlx_put_image_to_window \
-	(&mlx_structure, &mlx_structure.window, &image.pointer, 0, 0);
+	game.mlx = mlx_init();
+	game.window = ft_new_window(game.mlx, 300, 300, "so_long");
+	game.sprite = ft_new_sprite(game.mlx, "./assets/pac_open_left.xpm");
+	game.sprite_position.x = 3;
+	game.sprite_position.y = 10;
+	mlx_put_image_to_window(game.mlx, game.window.reference, \
+		game.sprite.reference, game.sprite_position.x, game.sprite_position.y);
+	mlx_put_image_to_window(game.mlx, game.window.reference, \
+		game.sprite.reference, 288, 0);
+	mlx_loop(game.mlx);
 	return (0);
 }
