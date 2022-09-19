@@ -113,6 +113,11 @@ t_map validate_map(char *map_file_path)
 	map = initialize_map();
 	if(map_file_path)
 		map.fd = open(map_file_path, O_RDONLY);
+	else
+	{
+		map.is_valid = 0;
+		return (map);
+	}
 	if(map.fd == -1)
 		map.is_valid = 0;
 	new_line = get_next_line(map.fd);

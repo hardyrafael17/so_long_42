@@ -54,17 +54,6 @@ typedef struct	s_image {
 	int			endian;
 }				t_image;
 
-typedef struct	s_program {
-	void		*mlx;
-	t_window	window;
-	t_image		sprite;
-	t_vector	sprite_position;
-}				t_program;
-
-// ---------------------------------
-// FUNCTIONS
-
-
 typedef struct s_map {
   char      *map_string;
   int       fd;
@@ -76,6 +65,26 @@ typedef struct s_map {
   size_t    enemies;
 }           t_map;
 
+typedef struct s_assets {
+	t_image		player;
+	t_image		enemy;
+	t_image		exit;
+	t_image		background;
+	t_image		wall;
+	t_image		collecatble;
+}				t_assets;
+
+typedef struct	s_program {
+	void		*mlx;
+	t_window	window;
+	t_assets    image;
+	t_map		map;
+}				t_program;
+
+// FUNCTIONS
+
+int			set_images( t_program *game);
+int			ft_put_images_to_map(t_program *game);
 t_map		validate_map(char *map_file_path);
 t_color		new_color(int r, int g, int b, int a);
 void		turn_img_to_color(t_image *image, t_color color);
