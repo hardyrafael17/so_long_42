@@ -1,7 +1,7 @@
 # Files
 NAME			=	so_long
 LIBFT			=   libft/libft.a
-LIBMLX			=	mlx/mlxlib.a
+LIBMLX			=	mlx_linux/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
@@ -16,7 +16,7 @@ CFLAGS			=	-g -Wall -Wextra -Werror
 RM				=	rm -rf
 #AR				=	ar rcs
 LIBRARY_LINK_FT	=	-Llibft -lft
-LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBRARY_LINK_MLX=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 
 # Rules
 all: $(NAME)
@@ -30,8 +30,8 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT): $(LIBMLX)
 	make -C libft
 
-$(LIBMLX): mlx/mlx.h
-	make -C mlx
+$(LIBMLX): mlx_linux/mlx.h
+	make -C mlx_linux
 
 %.o%.c: $(SRCS) $(LIBFT)
 	$(GCC) $(CFLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
@@ -39,12 +39,12 @@ $(LIBMLX): mlx/mlx.h
 clean:
 	$(RM) $(OBJS)
 	make clean -C libft
-	make clean	-C mlx
+	make clean	-C mlx_linux
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C libft
-	make clean -C mlx
+	make clean	-C mlx_linux
 	$(RM) .debug
 
 re: fclean all

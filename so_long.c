@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx/mlx.h"
+#include "mlx_linux/mlx.h"
 
 t_program	game;
 

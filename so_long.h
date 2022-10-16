@@ -14,7 +14,7 @@
 #define SO_LONG_H
 #include "get_next_line/get_next_line.h"
 #include "libft/libft.h"
-#include "mlx/mlx.h"
+#include "mlx_linux/mlx.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
