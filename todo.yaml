@@ -1,0 +1,10 @@
+- name: so_long 
+- todo:
+    controllers
+    error handling
+    multi platform
+- done: 
+    display images
+- currently working on: 
+    controllers
+    branch controlles
