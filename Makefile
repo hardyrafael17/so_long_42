@@ -4,8 +4,13 @@ LIBFT			=   libft/libft.a
 LIBMLX			=	mlx_linux/mlxlib.a
 
 # Sources and objects
-GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-PROJECT_FILES	=	validate_map.c events.c utils.c fill_map.c
+GNL_FILES		=	get_next_line/get_next_line.c \
+					get_next_line/get_next_line_utils.c
+PROJECT_FILES	=	validate_map.c		\
+					events.c			\
+					utils.c				\
+					fill_map.c			\
+					controller.c
 SO_LONG			=	so_long.c
 SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(SO_LONG)
 OBJS			=	$(SRCS:.c=.o)
@@ -25,7 +30,8 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(GCC) $(CFLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
 .debug: .main.c $(LIBFT) $(PROJECT_FILES)
-	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o .debug
+	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX) \
+	$(LIBRARY_LINK_FT) -o .debug
 
 $(LIBFT): $(LIBMLX)
 	make -C libft

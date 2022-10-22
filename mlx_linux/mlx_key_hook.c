@@ -16,6 +16,7 @@
 
 int		mlx_key_hook(t_win_list *win,int (*funct)(),void *param)
 {
+  printf("calling hoook\n");
   win->hooks[KeyRelease].hook = funct;
   win->hooks[KeyRelease].param = param;
   win->hooks[KeyRelease].mask = KeyReleaseMask;

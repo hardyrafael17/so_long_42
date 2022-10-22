@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx_linux/mlx.h"
 
 t_program	game;
 
@@ -33,10 +32,9 @@ int	main(int argc, char *argv[])
 	game.window = ft_new_window(game.mlx, (game.map.width * 32), (game.map.height * 32), "so_long");
 	if (set_images(&game))
 		return (1);
-
 	if (ft_put_images_to_map(&game))
 		return(1);
-
+	mlx_key_hook(&game.window, key_hook, &game);	
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -18,6 +18,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
 
 # ifndef ANIMATION_FRAMES
 #  define ANIMATION_FRAMES 10
@@ -95,5 +97,6 @@ t_image		ft_new_image(void* mlx, int width, int height);
 t_window	ft_new_window(void *mlx, int widht, int height, char *name);
 t_image		ft_new_sprite(void *mlx, char *path);
 int			ft_close();
+int			key_hook(void);
 
 #endif

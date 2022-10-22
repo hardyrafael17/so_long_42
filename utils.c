@@ -1,7 +1,4 @@
-#include "mlx_linux/mlx.h"
 #include "so_long.h"
-#include <stddef.h>
-#include <stdio.h>
 
 t_image ft_new_image(void* mlx, int width, int height)
 {
