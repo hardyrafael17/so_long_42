@@ -13,10 +13,14 @@
 #include "so_long.h"
 
 t_program	game;
+int key_hook(void)
+{
+	printf("Key pressd\n");
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
-//	t_image image_test;
 	if (argc != 2)
 	{
 		printf("Invalid Argument Count\n"); //Error 1 exit(0);
@@ -36,6 +40,7 @@ int	main(int argc, char *argv[])
 	if (ft_put_images_to_map(&game))
 		return(1);
 
+	mlx_key_hook(&game.window, key_hook, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
