@@ -5,7 +5,7 @@ LIBMLX			=	mlx/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-PROJECT_FILES	=	validate_map.c events.c utils.c fill_map.c key_input.c
+PROJECT_FILES	=	validate_map.c events.c utils.c fill_map.c
 SO_LONG			=	so_long.c
 SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(SO_LONG)
 OBJS			=	$(SRCS:.c=.o)

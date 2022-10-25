@@ -83,7 +83,7 @@ typedef struct	s_program {
 
 // FUNCTIONS
 
-int			key_input_test(int keycode);
+int			key_input_hook(int keycode, void *param);
 int			set_images( t_program *game);
 int			ft_put_images_to_map(t_program *game);
 t_map		validate_map(char *map_file_path);

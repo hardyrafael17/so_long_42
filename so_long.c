@@ -13,11 +13,6 @@
 #include "so_long.h"
 
 t_program	game;
-int key_hook(void)
-{
-	printf("Key pressd\n");
-	return (0);
-}
 
 int	main(int argc, char *argv[])
 {
@@ -40,7 +35,8 @@ int	main(int argc, char *argv[])
 	if (ft_put_images_to_map(&game))
 		return(1);
 
-	mlx_key_hook(&game.window, key_hook, &game);
+	mlx_key_hook(game.window.reference, *key_input_hook, &game);
+	// mlx_hook(&game.window, 2, 1L<<0, key_input_test,&game);
 	mlx_loop(game.mlx);
 	return (0);
 }
