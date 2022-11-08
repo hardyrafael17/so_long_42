@@ -11,13 +11,21 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "mlx_linux/mlx.h"
+
+int	key_input_hook(int key, void *param) {
+  if (!param)
+  {
+	printf("exit over here\n");
+	return (1);
+  }
+  printf("%d\n", key);
+  return (0);
+}
 
 t_program	game;
 
 int	main(int argc, char *argv[])
 {
-//	t_image image_test;
 	if (argc != 2)
 	{
 		printf("Invalid Argument Count\n"); //Error 1 exit(0);
@@ -37,6 +45,7 @@ int	main(int argc, char *argv[])
 	if (ft_put_images_to_map(&game))
 		return(1);
 
+	mlx_key_hook(game.window.reference, *key_input_hook, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

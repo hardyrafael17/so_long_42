@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include "../libs/libft/libft.h"
 
 typedef struct fd_data_list
 {

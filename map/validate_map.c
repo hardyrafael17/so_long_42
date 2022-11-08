@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 t_map *check_items(t_map *map)
 {
@@ -15,7 +15,8 @@ t_map *check_items(t_map *map)
 			map->player++;
 		else if(map->map_string[i] == 'E')
 			map->enemies++;
-		else if(map->map_string[i] == '1' || map->map_string[i] == '0' || map->map_string[i] == '\n')
+		else if(map->map_string[i] == '1' || map->map_string[i] == '0' ||\
+			  map->map_string[i] == '\n')
 		{
 			++i;
 			continue;

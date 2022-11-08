@@ -1,22 +1,26 @@
 # Files
 NAME			=	so_long
-LIBFT			=   libft/libft.a
-LIBMLX			=	mlx_linux/mlxlib.a
+LIBFT			=   libs/libft/libft.a
+LIBMLX			=	libs/mlx_linux/mlxlib.a
 
 # Sources and objects
-GNL_FILES		=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-PROJECT_FILES	=	validate_map.c events.c utils.c fill_map.c
-SO_LONG			=	so_long.c
-SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(SO_LONG)
+GNL_FILES		=	$(wildcard get_next_line/*.c)
+MAP				=	$(wildcard map/*.c)
+UTILS			=	$(wildcard utils/*.c)
+PROJECT_FILES	= 	$(wildcard *.c)
+SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(MAP) $(UTILS)
 OBJS			=	$(SRCS:.c=.o)
 DEBUG_MAIN		=	.main.c
+
 #Literals
 GCC				=	gcc
 CFLAGS			=	-g -Wall -Wextra -Werror
 RM				=	rm -rf
+
 #AR				=	ar rcs
-LIBRARY_LINK_FT	=	-Llibft -lft
-LIBRARY_LINK_MLX=	-Lmlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+LIBRARY_LINK_FT	=	-Llibs/libft -lft
+LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+#LIBRARY_LINK_MAC=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 
 # Rules
 all: $(NAME)
@@ -25,26 +29,27 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(GCC) $(CFLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
 .debug: .main.c $(LIBFT) $(PROJECT_FILES)
-	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o .debug
+	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX)
+	$(LIBRARY_LINK_FT) -o .debug
 
 $(LIBFT): $(LIBMLX)
-	make -C libft
+	make -C libs/libft
 
-$(LIBMLX): mlx_linux/mlx.h
-	make -C mlx_linux
+$(LIBMLX): libs/mlx_linux/mlx.h
+	make -C libs/mlx_linux
 
 %.o%.c: $(SRCS) $(LIBFT)
 	$(GCC) $(CFLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
 	$(RM) $(OBJS)
-	make clean -C libft
-	make clean	-C mlx_linux
+	make clean -C libs/libft
+	make clean	-C libs/mlx_linux
 
 fclean:	clean
 	$(RM) $(NAME)
-	make fclean -C libft
-	make clean	-C mlx_linux
+	make fclean -C libs/libft
+	make clean	-C libs/mlx_linux
 	$(RM) .debug
 
 re: fclean all
