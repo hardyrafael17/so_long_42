@@ -82,18 +82,19 @@ typedef struct	s_program {
 }				t_program;
 
 // FUNCTIONS
-
-int			set_images( t_program *game);
-int			ft_put_images_to_map(t_program *game);
-t_map		validate_map(char *map_file_path);
-t_color		new_color(int r, int g, int b, int a);
-void		turn_img_to_color(t_image *image, t_color color);
+int			key_update_game(int key, void *param);
+int			paint_map(t_program *game);
+int			initialize_images(t_program *game);
 int			ft_input(int key, void *program);
 int			ft_update (void *param);
-t_map       initialize_map();
-t_image		ft_new_image(void* mlx, int width, int height);
-t_window	ft_new_window(void *mlx, int widht, int height, char *name);
-t_image		ft_new_sprite(void *mlx, char *path);
 int			ft_close();
+void		handle_error(char *error);
+void		turn_img_to_color(t_image *image, t_color color);
+t_map       initialize_map();
+t_map		validate_map(char *map_file_path);
+t_image		ft_new_image(void* mlx, int width, int height);
+t_image		ft_new_sprite(void *mlx, char *path);
+t_window	ft_new_window(void *mlx, int widht, int height, char *name);
+t_color		new_color(int r, int g, int b, int a);
 
 #endif

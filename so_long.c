@@ -12,20 +12,16 @@
 
 #include "so_long.h"
 
-int	key_input_hook(int key, void *param) {
-  if (!param)
-  {
-	printf("exit over here\n");
-	return (1);
-  }
-  printf("%d\n", key);
-  return (0);
-}
-
 t_program	game;
 
 int	main(int argc, char *argv[])
 {
+  //validate arguments
+  //validate map
+  //initialize game
+  //initialize images
+  //hook to events
+  //startk game
 	if (argc != 2)
 	{
 		printf("Invalid Argument Count\n"); //Error 1 exit(0);
@@ -39,13 +35,13 @@ int	main(int argc, char *argv[])
 	}
 	game.mlx = mlx_init();
 	game.window = ft_new_window(game.mlx, (game.map.width * 32), (game.map.height * 32), "so_long");
-	if (set_images(&game))
+	if (initialize_images(&game))
 		return (1);
 
-	if (ft_put_images_to_map(&game))
+	if (paint_map(&game))
 		return(1);
 
-	mlx_key_hook(game.window.reference, *key_input_hook, &game);
+	mlx_key_hook(game.window.reference, *key_update_game, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

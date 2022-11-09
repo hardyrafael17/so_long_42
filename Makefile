@@ -8,7 +8,10 @@ GNL_FILES		=	$(wildcard get_next_line/*.c)
 MAP				=	$(wildcard map/*.c)
 UTILS			=	$(wildcard utils/*.c)
 PROJECT_FILES	= 	$(wildcard *.c)
-SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(MAP) $(UTILS)
+EVENTS			=	$(wildcard events/*.c)
+IMAGE			=	$(wildcard images/*.c)
+SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(MAP) $(UTILS) $(EVENTS) \
+					$(IMAGE)
 OBJS			=	$(SRCS:.c=.o)
 DEBUG_MAIN		=	.main.c
 
