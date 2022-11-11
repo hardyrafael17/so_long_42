@@ -10,16 +10,17 @@
 // }				t_assets;
 
 typedef	struct	s_position {
-  signed int	from_x;
-  signed int	from_y;
-  signed int	to_x;
-  signed int	to_y;
+		size_t	from_x;
+		size_t	from_y;
+    size_t	to_x;
+		size_t 	to_y;
 }				t_position;
 
 void	modify_map(t_position position, t_program game) {
-  //validate next move;
-  //update display after completing change
-  if(game.map.is_valid && position.from_x)
-	return; 
-  return;
+
+				
+			//validate next move;
+			//update display after completing change
+			if(game.map.is_valid && position.from_x)
+			return; 
 }
