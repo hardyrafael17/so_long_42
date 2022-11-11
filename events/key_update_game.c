@@ -6,11 +6,10 @@
   w = 119
   esc = 65307
   * */
-enum Action {left, right, up, down, quit, ignore_key};
 
 enum Action	validate_key(int key)
 {
-		printf("%d\n", key);
+		// printf("%d\n", key);
 		if (key == 97)
 				return (left);
 		else if (key == 115)
@@ -24,16 +23,19 @@ enum Action	validate_key(int key)
 		else
 				return ignore_key;
 }
+
 void update_game(enum Action action, t_program *game)
 {
+		update_map(action, game);
 		//update position
 		//repaint
 		//enter loop
+		printf("Map updated\n");
 }
 
-int	key_update_game(int key, t_program *param)
+int	key_update_game(int key, void *param)
 {
-		printf("%d\n", key);
+		// printf("%d\n", key);
 		//validate key
 		enum Action	action;
 		
@@ -41,7 +43,7 @@ int	key_update_game(int key, t_program *param)
 		if (action == ignore_key)
 		{
 				return (0);
-		} else if (key == quit)
+		} else if (action == quit)
 		{
 				exit(0); // TODO free memory
 		}

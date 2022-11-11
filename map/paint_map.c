@@ -37,8 +37,10 @@ int	paint_map(t_program *game)
 			index++;
 			continue;
 		}
-		mlx_put_image_to_window(game->mlx, game->window.reference, game->image.background.reference, width, height);
-		mlx_put_image_to_window(game->mlx, game->window.reference, ft_get_sprite(game, str[index]) ,width, height);
+		mlx_put_image_to_window(game->mlx, game->window.reference, \
+													game->image.background.reference, width, height);
+		mlx_put_image_to_window(game->mlx, game->window.reference, \
+													ft_get_sprite(game, str[index]) ,width, height);
 		index++;
 	}
 	return (0);

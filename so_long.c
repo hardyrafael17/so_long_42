@@ -33,6 +33,7 @@ int	main(int argc, char *argv[])
 				printf("Invalid Map\n"); //Error 2
 				exit(0);
 		}
+		set_player_position(&game);
 		game.mlx = mlx_init();
 		game.window = ft_new_window(game.mlx, (game.map.width * 32), \
 														 (game.map.height * 32), "so_long");

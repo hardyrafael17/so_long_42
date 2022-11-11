@@ -1,0 +1,2 @@
+- name: issue
+  while passing structs to functions, it seems globals don't behave the same as local
