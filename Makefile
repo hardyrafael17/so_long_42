@@ -1,7 +1,7 @@
 # Files
 NAME			=	so_long
 LIBFT			=   libs/libft/libft.a
-LIBMLX			=	libs/mlx_linux/mlxlib.a
+LIBMLX			=	libs/mlx/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	$(wildcard get_next_line/*.c)
@@ -13,7 +13,6 @@ IMAGE			=	$(wildcard images/*.c)
 SRCS			=	$(GNL_FILES) $(PROJECT_FILES) $(MAP) $(UTILS) $(EVENTS) \
 					$(IMAGE)
 OBJS			=	$(SRCS:.c=.o)
-DEBUG_MAIN		=	.main.c
 
 #Literals
 GCC				=	gcc
@@ -21,9 +20,8 @@ CFLAGS			=	-g -Wall -Wextra -Werror
 RM				=	rm -rf
 
 #AR				=	ar rcs
-LIBRARY_LINK_FT	=	-Llibs/libft -lft
-LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
-#LIBRARY_LINK_MAC=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+LIBRARY_LINK_FT	=	-Llibft -lft
+LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # Rules
 all: $(NAME)
@@ -38,8 +36,8 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT): $(LIBMLX)
 	make -C libs/libft
 
-$(LIBMLX): libs/mlx_linux/mlx.h
-	make -C libs/mlx_linux
+$(LIBMLX): libs/mlx/mlx.h
+	make -C libs/mlx
 
 %.o%.c: $(SRCS) $(LIBFT)
 	$(GCC) $(CFLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
@@ -47,17 +45,17 @@ $(LIBMLX): libs/mlx_linux/mlx.h
 clean:
 	$(RM) $(OBJS)
 	make clean -C libs/libft
-	make clean	-C libs/mlx_linux
+	make clean	-C libs/mlx
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C libs/libft
-	make clean	-C libs/mlx_linux
+	make clean	-C libs/mlx
 	$(RM) .debug
 
 re: fclean all
 
 run: all
-	$(shell ./so_long)
+	$(shell ./so_long map.ber)
 
 .PHONY: all clean fclean re run
