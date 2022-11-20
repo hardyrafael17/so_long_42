@@ -14,7 +14,6 @@
 #define SO_LONG_H
 #include "get_next_line/get_next_line.h"
 #include "libs/libft/libft.h"
-#include "libs/mlx_linux/mlx.h"
 #include <fcntl.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -23,6 +22,12 @@
 # ifndef ANIMATION_FRAMES
 #  define ANIMATION_FRAMES 10
 # endif
+
+#if __linux__
+		#include "libs/mlx_linux/mlx.h"
+#else 
+		#include "libs/mlx/mlx.h"
+#endif
 
 /* vector with an x and y */
 typedef struct	s_vector
