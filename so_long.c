@@ -16,12 +16,6 @@ t_program	game;
 
 int	main(int argc, char *argv[])
 {
-  //validate arguments
-  //validate map
-  //initialize game
-  //initialize images
-  //hook to events
-  //startk game
 		if (argc != 2)
 		{
 				printf("Invalid Argument Count\n"); //Error 1 exit(0);

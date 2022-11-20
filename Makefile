@@ -1,7 +1,17 @@
-# Files
 NAME			=	so_long
+#detect OS
+O_SYSTEM := $(shell uname)
+ifeq ($(O_SYSTEM), Linux)
+	LIBMLX			=	libs/mlx_linux/mlxlib.a
+	OS_LIB_DIR		=	libs/mlx_linux
+	LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+else
+	LIBMLX			=	libs/mlx/mlxlib.a
+	OS_LIB_DIR		=	libs/mlx
+	LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+endif
+# Files
 LIBFT			=   libs/libft/libft.a
-LIBMLX			=	libs/mlx/mlxlib.a
 
 # Sources and objects
 GNL_FILES		=	$(wildcard get_next_line/*.c)
@@ -20,38 +30,32 @@ CFLAGS			=	-g -Wall -Wextra -Werror
 RM				=	rm -rf
 
 #AR				=	ar rcs
-LIBRARY_LINK_FT	=	-Llibft -lft
-LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBRARY_LINK_FT	=	-Llibs/libft -lft
 
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
 	$(GCC) $(CFLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
 
-.debug: .main.c $(LIBFT) $(PROJECT_FILES)
-	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX)
-	$(LIBRARY_LINK_FT) -o .debug
-
-$(LIBFT): $(LIBMLX)
+$(LIBFT):
 	make -C libs/libft
 
-$(LIBMLX): libs/mlx/mlx.h
-	make -C libs/mlx
+$(LIBMLX):
+	make -C $(OS_LIB_DIR)
 
-%.o%.c: $(SRCS) $(LIBFT)
+%.o%.c: $(SRCS) $(LIBFT) 
 	$(GCC) $(CFLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
 	$(RM) $(OBJS)
 	make clean -C libs/libft
-	make clean	-C libs/mlx
+	make clean	-C $(OS_LIB_DIR) 
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C libs/libft
-	make clean	-C libs/mlx
-	$(RM) .debug
+	make clean	-C $(OS_LIB_DIR) 
 
 re: fclean all
 
