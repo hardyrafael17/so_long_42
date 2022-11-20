@@ -1,14 +1,14 @@
 NAME			=	so_long
 #detect OS
 O_SYSTEM := $(shell uname)
-ifeq ($(UNAME), Linux)
+ifeq ($(O_SYSTEM), Linux)
 	LIBMLX			=	libs/mlx_linux/mlxlib.a
 	OS_LIB_DIR		=	libs/mlx_linux
 	LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 else
 	LIBMLX			=	libs/mlx/mlxlib.a
 	OS_LIB_DIR		=	libs/mlx
-	LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+	LIBRARY_LINK_MLX=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 endif
 # Files
 LIBFT			=   libs/libft/libft.a
@@ -32,6 +32,9 @@ RM				=	rm -rf
 #AR				=	ar rcs
 LIBRARY_LINK_FT	=	-Llibs/libft -lft
 
+test:
+	echo $(O_SYSTEM)
+
 # Rules
 all: $(NAME)
 
@@ -42,10 +45,10 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX)
 	$(LIBRARY_LINK_FT) -o .debug
 
-$(LIBFT): $(LIBFT)
+$(LIBFT):
 	make -C libs/libft
 
-$(LIBMLX): $(LIBMLX)
+$(LIBMLX):
 	make -C $(OS_LIB_DIR)
 
 %.o%.c: $(SRCS) $(LIBFT)
