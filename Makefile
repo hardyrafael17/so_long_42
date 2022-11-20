@@ -32,18 +32,11 @@ RM				=	rm -rf
 #AR				=	ar rcs
 LIBRARY_LINK_FT	=	-Llibs/libft -lft
 
-test:
-	echo $(O_SYSTEM)
-
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
 	$(GCC) $(CFLAGS) $(OBJS) $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) -o $(NAME)
-
-.debug: .main.c $(LIBFT) $(PROJECT_FILES)
-	$(GCC) $(DEBUG_MAIN) $(PROJECT_FILES) $(GNL_FILES) $(LIBRARY_LINK_MLX)
-	$(LIBRARY_LINK_FT) -o .debug
 
 $(LIBFT):
 	make -C libs/libft
@@ -51,7 +44,7 @@ $(LIBFT):
 $(LIBMLX):
 	make -C $(OS_LIB_DIR)
 
-%.o%.c: $(SRCS) $(LIBFT)
+%.o%.c: $(SRCS) $(LIBFT) 
 	$(GCC) $(CFLAGS) -c $(LIBRARY_LINK_MLX) $(LIBRARY_LINK_FT) $< -o $@
 
 clean:
@@ -63,7 +56,6 @@ fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C libs/libft
 	make clean	-C $(OS_LIB_DIR) 
-	$(RM) .debug
 
 re: fclean all
 
