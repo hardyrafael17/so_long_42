@@ -25,8 +25,18 @@
 
 #if __linux__
 		#include "libs/mlx_linux/mlx.h"
+		#define UP		119
+		#define DOWN	115
+		#define LEFT	97
+		#define RIGHT 100
+		#define ESC		65307
 #else 
 		#include "libs/mlx/mlx.h"
+		#define UP		13
+		#define DOWN	1
+		#define LEFT	0
+		#define RIGHT 2
+		#define ESC		53
 #endif
 
 /* vector with an x and y */
@@ -37,7 +47,7 @@ typedef struct	s_vector
 }				t_vector;
 
 /* All posible actions */ 
-enum Action {left, right, up, down, quit, ignore_key};
+enum Action {left = 5, right, up, down, quit, ignore_key};
 
 /* A pointer to the window and its size */
 typedef struct	s_window {

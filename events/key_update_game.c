@@ -1,24 +1,17 @@
 #include "../so_long.h"
-  /* linux <- -> mac
-  a = 97 0
-  s = 115 1
-  d = 100 2 
-  w = 119 13 
-  esc = 65307 53
-  * */
 
 enum Action	validate_key(int key)
 {
-		// printf("%d\n", key);
-		if (key == 0)
+		printf("%d\n", key);
+		if (key == LEFT)
 				return (left);
-		else if (key == 1)
+		else if (key == DOWN)
 				return (down);
-		else if (key == 13)
+		else if (key == UP)
 				return (up);
-		else if (key == 2)
+		else if (key == RIGHT)
 				return (right);
-		else if (key == 53)
+		else if (key == ESC)
 				return quit;
 		else
 				return ignore_key;
@@ -27,15 +20,10 @@ enum Action	validate_key(int key)
 void update_game(enum Action action, t_program *game)
 {
 		update_map(action, game);
-		//update position
-		//repaint
-		//enter loop
-		printf("Map updated\n");
 }
 
 int	key_update_game(int key, void *param)
 {
-		printf("%d\n", key);
 		//validate key
 		enum Action	action;
 		
