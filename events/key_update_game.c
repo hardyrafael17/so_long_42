@@ -2,7 +2,6 @@
 
 enum Action	validate_key(int key)
 {
-		printf("%d\n", key);
 		if (key == LEFT)
 				return (left);
 		else if (key == DOWN)

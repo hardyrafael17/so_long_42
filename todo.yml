@@ -1,2 +1,15 @@
 - name: issue
-  while passing structs to functions, it seems globals don't behave the same as local
+- todo:
+  - game-play
+  - events
+  - errors
+    - EXIT_FAILURE
+    - EXIT_SUCCESS
+    - errno
+  - norme
+
+- currently working on:
+  - game-play
+    - end actions
+    - set game record status
+      - collectables - (done);

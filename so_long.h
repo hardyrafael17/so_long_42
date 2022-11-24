@@ -82,7 +82,7 @@ typedef struct s_map {
 			size_t    collectables;
 			size_t    player;
 			size_t    enemies;
-}           t_map;
+}          			t_map;
 
 typedef struct s_assets {
 			t_image		player;
@@ -91,19 +91,27 @@ typedef struct s_assets {
 			t_image		background;
 			t_image		wall;
 			t_image		collecatble;
-}				t_assets;
+}								t_assets;
+
+typedef struct s_record {
+		size_t			collectables;
+		int					game_over;
+		size_t			move_count;
+}								t_record;
 
 typedef struct	s_program {
-			void		*mlx;
-			t_window	window;
-			t_assets    image;
-			t_map		map;
-			t_vector	player;
-}				t_program;
+		void			*mlx;
+		t_window	window;
+		t_assets	image;
+		t_map			map;
+		t_vector	player;
+		t_record	record;
+}								t_program;
 
 // FUNCTIONS
 void			update_map(enum Action action, t_program *game);
 void			set_player_position(t_program *game);
+int				init_game(t_program *param);
 int				key_update_game(int key, void *param);
 int				paint_map(t_program *game);
 int				initialize_images(t_program *game);
