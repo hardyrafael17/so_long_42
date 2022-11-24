@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paint_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/24 03:03:57 by hjimenez          #+#    #+#             */
+/*   Updated: 2022/11/24 03:05:59 by hjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-void 	*ft_get_sprite(t_program *game, char type)
+void	*ft_get_sprite(t_program *game, char type)
 {
 	if (type == '0')
 		return (game->image.background.reference);
@@ -13,7 +25,7 @@ void 	*ft_get_sprite(t_program *game, char type)
 	else if (type == 'P')
 		return (game->image.player.reference);
 	else
-	 return (game->image.background.reference);
+		return (game->image.background.reference);
 }
 
 int	paint_map(t_program *game)
@@ -29,18 +41,18 @@ int	paint_map(t_program *game)
 	index = 0;
 	while (str[index])
 	{
-		width = (int) ((index % game->map.width) * 32);
+		width = (int)((index % game->map.width) * 32);
 		height = (int) line * 32;
-		if(str[index] == '\n')
+		if (str[index] == '\n')
 		{
 			line++;
 			index++;
-			continue;
+			continue ;
 		}
 		mlx_put_image_to_window(game->mlx, game->window.reference, \
-													game->image.background.reference, width, height);
+			game->image.background.reference, width, height);
 		mlx_put_image_to_window(game->mlx, game->window.reference, \
-													ft_get_sprite(game, str[index]) ,width, height);
+			ft_get_sprite(game, str[index]), width, height);
 		index++;
 	}
 	return (0);

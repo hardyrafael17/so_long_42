@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/24 03:09:26 by hjimenez          #+#    #+#             */
+/*   Updated: 2022/11/24 03:11:47 by hjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-t_map *check_items(t_map *map)
+t_map	*check_items(t_map *map)
 {
 	size_t	i;
 
 	i = 0;
-	if(!map->is_valid)
+	if (!map->is_valid)
 		return (map);
-	while(map->map_string[i])
+	while (map->map_string[i])
 	{
-		if(map->map_string[i] == 'C')
+		if (map->map_string[i] == 'C')
 			map->collectables++;
-		else if(map->map_string[i] == 'P')
+		else if (map->map_string[i] == 'P')
 			map->player++;
-		else if(map->map_string[i] == 'E')
+		else if (map->map_string[i] == 'E')
 			map->enemies++;
-		else if(map->map_string[i] == '1' || map->map_string[i] == '0' || map->map_string[i] == '\n')
+		else if (map->map_string[i] == '1' || map->map_string[i] == '0' \
+			|| map->map_string[i] == '\n')
 		{
 			++i;
-			continue;
+			continue ;
 		}
 		else
 		{
@@ -32,25 +45,26 @@ t_map *check_items(t_map *map)
 	return (map);
 }
 
-void check_borders(t_map *map)
+void	check_borders(t_map *map)
 {
 	size_t	i;
 
 	i = 0;
-	if(!map->map_string)
+	if (!map->map_string)
 	{
 		map->is_valid = 0;
-		return;
+		return ;
 	}
-	while(map->map_string[i])
+	while (map->map_string[i])
 	{
-		if(i < map->width - 2 && map->map_string[i] != '1') //Frist line check
+		if (i < map->width - 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if(i > (map->width * map->height) - map->width && i < (map->width * map->height) - 2 && map->map_string[i] != '1')
+		if (i > (map->width * map->height) - map->width && i < (map->width \
+			* map->height) \- 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if((i + 2)%map->width == 0 && map->map_string[i] != '1')
+		if ((i + 2)%map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if(i%map->width == 0 && map->map_string[i] != '1')
+		if (i%map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		++i;
 	}
