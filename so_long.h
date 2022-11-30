@@ -111,13 +111,13 @@ typedef struct s_program
 }				t_program;
 
 // FUNCTIONS
-void			update_map(enum Action action, t_program *game);
+void			update_map(enum e_Action action, t_program *game);
 void			set_player_position(t_program *game);
 int				init_game(t_program *param);
 int				key_update_game(int key, void *param);
 int				paint_map(t_program *game);
 int				initialize_images(t_program *game);
-int				ft_input(int key, (void) *program);
+int				ft_input(int key, void *program);
 int				ft_update (void *(param));
 int				ft_close(void);
 void			handle_error(char *error);

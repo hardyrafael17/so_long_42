@@ -21,22 +21,22 @@ int	main(int argc, char *argv[])
 		printf("Invalid Argument Count\n");
 		return (1);
 	}
-	game.map = validate_map(argv[1]);
-	if (!game.map.is_valid)
+	g_game.map = validate_map(argv[1]);
+	if (!g_game.map.is_valid)
 	{
 		printf("Invalid Map\n");
 		exit(0);
 	}
-	init_game(&game);
-	set_player_position(&game);
-	game.mlx = mlx_init();
-	game.window = ft_new_window(game.mlx, (game.map.width * 32), \
-		(game.map.height * 32), "so_long");
-	if (initialize_images(&game))
+	init_game(&g_game);
+	set_player_position(&g_game);
+	g_game.mlx = mlx_init();
+	g_game.window = ft_new_window(g_game.mlx, (g_game.map.width * 32), \
+		(g_game.map.height * 32), "so_long");
+	if (initialize_images(&g_game))
 		return (1);
-	if (paint_map(&game))
+	if (paint_map(&g_game))
 		return (1);
-	mlx_key_hook(game.window.reference, *key_update_game, &game);
-	mlx_loop(game.mlx);
+	mlx_key_hook(g_game.window.reference, *key_update_game, &g_game);
+	mlx_loop(g_game.mlx);
 	return (0);
 }
