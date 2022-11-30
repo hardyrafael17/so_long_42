@@ -60,7 +60,7 @@ void	check_borders(t_map *map)
 		if (i < map->width - 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		if (i > (map->width * map->height) - map->width && i < (map->width \
-			* map->height) \- 2 && map->map_string[i] != '1')
+			* map->height) - 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		if ((i + 2)%map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;

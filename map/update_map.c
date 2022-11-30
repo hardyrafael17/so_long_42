@@ -41,7 +41,7 @@ static void	ft_direction(size_t index, signed int direction, t_program *param)
 	}
 }
 
-void	update_map(enum Action action, t_program *param)
+void	update_map(enum e_Action action, t_program *param)
 {
 	t_vector	*current_xy;
 	size_t		string_index;

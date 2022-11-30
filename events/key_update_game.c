@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-enum Action	validate_key(int key)
+enum e_Action	validate_key(int key)
 {
 	if (key == LEFT)
 		return (left);
@@ -28,7 +28,7 @@ enum Action	validate_key(int key)
 		return (ignore_key);
 }
 
-void	update_game(enum Action action, t_program *game)
+void	update_game(enum e_Action action, t_program *game)
 {
 	update_map(action, game);
 }
