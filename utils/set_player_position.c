@@ -20,7 +20,6 @@ t_vector	get_coordenates(t_program *game, size_t target)
 
 	y = (target / game->map.width);
 	x = (target % game->map.width);
-	printf("x=> %d, y%d\n", (int) x, (int) y);
 	vector.x = x;
 	vector.y = y;
 	return (vector);

@@ -28,7 +28,7 @@ void	*ft_get_sprite(t_program *game, char type)
 		return (game->image.background.reference);
 }
 
-int	paint_map(t_program *game)
+void	ft_paint_map(t_program *game)
 {
 	size_t	line;
 	size_t	index;
@@ -55,5 +55,4 @@ int	paint_map(t_program *game)
 			ft_get_sprite(game, str[index]), width, height);
 		index++;
 	}
-	return (0);
 }

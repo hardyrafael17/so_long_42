@@ -1,7 +1,5 @@
 - name: issue
 - todo:
-  - game-play
-  - events
   - errors
     - EXIT_FAILURE
     - EXIT_SUCCESS
@@ -9,6 +7,11 @@
   - norme
 
 - currently working on:
+  - errors
+
+- done
+  - game-play
+  - events
   - game-play
     - end actions
     - set game record status

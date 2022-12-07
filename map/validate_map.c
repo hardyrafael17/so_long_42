@@ -17,8 +17,6 @@ t_map	*check_items(t_map *map)
 	size_t	i;
 
 	i = 0;
-	if (!map->is_valid)
-		return (map);
 	while (map->map_string[i])
 	{
 		if (map->map_string[i] == 'C')
@@ -35,7 +33,8 @@ t_map	*check_items(t_map *map)
 		}
 		else
 		{
-			map->is_valid = 0;
+		map->is_valid = 0;
+			free(map->map_string);
 			return (map);
 		}
 		++i;
@@ -124,21 +123,14 @@ t_map validate_map(char *map_file_path)
 {
 	char	*new_line;
 	t_map	map;
+
 	map = initialize_map();
-	if(map_file_path)
-		map.fd = open(map_file_path, O_RDONLY);
-	else
-	{
-		map.is_valid = 0;
-		return (map);
-	}
+	map.fd = open(map_file_path, O_RDONLY);
 	if(map.fd == -1)
-		map.is_valid = 0;
+		ft_handle_error(5);
 	new_line = get_next_line(map.fd);
 	while(check_line(&map, new_line))
-	{
 		new_line = get_next_line(map.fd);
-	}
 	check_borders(&map);
 	check_items(&map);
 	return (map);
