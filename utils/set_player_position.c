@@ -25,7 +25,7 @@ t_vector	get_coordenates(t_program *game, size_t target)
 	return (vector);
 }
 
-void	set_player_position(t_program *game)
+void	ft_set_player_position(t_program *game)
 {
 	int		count;
 

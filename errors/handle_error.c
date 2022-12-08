@@ -15,6 +15,6 @@
 
 void	ft_handle_error(int error)
 {
-
+  printf("%d\n", error);
 }
   
