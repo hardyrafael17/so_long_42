@@ -30,6 +30,11 @@ enum e_Action	validate_key(int key)
 
 void	update_game(enum e_Action action, t_program *game)
 {
+	if(action == quit)
+	{
+	  free(game->map.map_string);
+	  exit(0);
+	}
 	update_map(action, game);
 }
 
@@ -39,13 +44,7 @@ int	key_update_game(int key, void *param)
 
 	action = validate_key(key);
 	if (action == ignore_key)
-	{
 		return (0);
-	}
-	else if (action == quit)
-	{
-		exit(0);
-	}
 	update_game(action, param);
 	return (0);
 }

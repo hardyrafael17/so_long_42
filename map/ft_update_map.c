@@ -24,7 +24,6 @@ static void	ft_direction(size_t index, signed int direction, t_program *param)
 	else if (param->map.map_string[index + direction] == 'C')
 	{
 		param->record.collectables--;
-		printf("collectables count -> %zu\n", param->record.collectables);
 		param->map.map_string[index] = '0';
 		param->map.map_string[index + direction] = 'P';
 		ft_set_player_position(param);

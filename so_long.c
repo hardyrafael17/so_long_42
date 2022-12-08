@@ -16,15 +16,12 @@ t_program	g_game;
 
 int	main(int argc, char *argv[])
 {
-	if (argc != 2)
-		ft_handle_error(1);
-	g_game.map = validate_map(argv[1]);
-	if (!g_game.map.is_valid)
-		ft_handle_error(2);
+	ft_check_args(argc, argv);
+	g_game.map = ft_validate_map(argv[1]);
 	init_game(&g_game);
 	ft_set_player_position(&g_game);
 	g_game.mlx = mlx_init();
-	g_game.window = ft_new_window(g_game.mlx, (g_game.map.width * 32), \
+	g_game.window = ft_new_window(g_game.mlx, ((g_game.map.width - 1) * 32), \
 		(g_game.map.height * 32), "so_long");
 	ft_initialize_images(&g_game);
 	ft_paint_map(&g_game);

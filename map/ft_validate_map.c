@@ -40,11 +40,14 @@ t_map	*check_items(t_map *map)
 		++i;
 	}
 	if (map->collectables < 1 && map->player != 1)
+	{
+		free(map->map_string);
 		map->is_valid = 0;
+	}
 	return (map);
 }
 
-void	check_borders(t_map *map)
+static void	check_borders(t_map *map)
 {
 	size_t	i;
 
@@ -67,6 +70,8 @@ void	check_borders(t_map *map)
 			map->is_valid = 0;
 		++i;
 	}
+	if(!map->is_valid)
+		free(map->map_string);
 }
 
 t_map	initialize_map()
@@ -83,7 +88,7 @@ t_map	initialize_map()
 	return(map);
 }
 
-int check_line(t_map *map, char *line)
+static int check_line(t_map *map, char *line)
 {
 	char	*line_holder;
 
@@ -99,7 +104,6 @@ int check_line(t_map *map, char *line)
 	}
 	if(map->width != ft_strlen(line))
 	{
-		printf("no match");
 		map->is_valid = 0;
 		return (0);
 	}
@@ -119,7 +123,7 @@ int check_line(t_map *map, char *line)
 	return (1);
 }
 
-t_map validate_map(char *map_file_path)
+t_map ft_validate_map(char *map_file_path)
 {
 	char	*new_line;
 	t_map	map;
@@ -127,11 +131,14 @@ t_map validate_map(char *map_file_path)
 	map = initialize_map();
 	map.fd = open(map_file_path, O_RDONLY);
 	if(map.fd == -1)
-		ft_handle_error(5);
+		ft_handle_error(6, NULL);
 	new_line = get_next_line(map.fd);
 	while(check_line(&map, new_line))
 		new_line = get_next_line(map.fd);
 	check_borders(&map);
 	check_items(&map);
+	if (!map.is_valid)
+		ft_handle_error(2, "Error: Invalid Map");
 	return (map);
 }
+

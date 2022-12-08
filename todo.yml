@@ -1,15 +1,19 @@
 - name: issue
 - todo:
+  - test map
+  - print stats
   - errors
-    - EXIT_FAILURE
-    - EXIT_SUCCESS
     - errno
   - norme
+    no-relink
+  - game finish
 
 - currently working on:
   - errors
+    - EXIT_FAILURE
 
 - done
+  - EXIT_SUCCESS
   - game-play
   - events
   - game-play

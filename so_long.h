@@ -18,6 +18,8 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <string.h>
 
 # ifndef ANIMATION_FRAMES
 #  define ANIMATION_FRAMES 10
@@ -118,12 +120,13 @@ int				key_update_game(int key, void *param);
 void			ft_paint_map(t_program *game);
 void			ft_initialize_images(t_program *game);
 int				ft_input(int key, void *program);
+void			ft_check_args(int argc, char *argv[]);
 int				ft_update (void *(param));
 int				ft_close(void);
-void			ft_handle_error(int error);
+void			ft_handle_error(int error, const char *str_error);
 void			turn_img_to_color(t_image *image, t_color color);
 t_map			initialize_map(void);
-t_map			validate_map(char *map_file_path);
+t_map			ft_validate_map(char *map_file_path);
 t_image		ft_new_image(void *mlx, int width, int height);
 t_image		ft_new_sprite(void *mlx, char *path);
 t_window	ft_new_window(void *mlx, int widht, int height, char *name);

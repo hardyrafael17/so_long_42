@@ -12,9 +12,13 @@
 
 #include "../so_long.h"
 
-
-void	ft_handle_error(int error)
-{
-  printf("%d\n", error);
+void	ft_handle_error(int error, const char *str_error) {
+	if(!str_error)
+	{
+		perror("Error");
+		exit(error);
+	}
+	printf("Error: %s.\n", str_error);
+	exit (error);
 }
-  
+
