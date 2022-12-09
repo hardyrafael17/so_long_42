@@ -12,6 +12,25 @@
 
 #include "../so_long.h"
 
+static void	ft_stats_header_string(t_program *game)
+{
+	if (game->record.stats_header_printed)
+		return ;
+
+	int 	y;
+	int		w;
+	void *mlx;
+	void *win;
+
+	mlx = game->mlx;
+	win = game->window.reference;
+	w = ft_create_trgb(0, 255, 255, 255);
+	y = (game->map.height * 32) + 11;
+	mlx_string_put(mlx, win, 1, y, w, "Moves |");
+	mlx_string_put(mlx, win, 55, y, w, "Items Left");
+	game->record.stats_header_printed++;
+}
+
 void	*ft_get_sprite(t_program *game, char type)
 {
 	if (type == '0')
@@ -55,4 +74,5 @@ void	ft_paint_map(t_program *game)
 			ft_get_sprite(game, str[index]), width, height);
 		index++;
 	}
+	ft_stats_header_string(game);
 }
