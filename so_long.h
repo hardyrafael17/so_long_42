@@ -94,12 +94,14 @@ typedef struct s_assets {
 	t_image		background;
 	t_image		wall;
 	t_image		collecatble;
+	t_image		erase;
 }				t_assets;
 
 typedef struct s_record {
 	size_t		collectables;
 	int			game_over;
 	size_t		move_count;
+	size_t		stats_header_printed;
 }				t_record;
 
 typedef struct s_program
@@ -131,5 +133,6 @@ t_image		ft_new_image(void *mlx, int width, int height);
 t_image		ft_new_sprite(void *mlx, char *path);
 t_window	ft_new_window(void *mlx, int widht, int height, char *name);
 t_color		new_color(int r, int g, int b, int a);
+int				ft_create_trgb(int t, int r, int g, int b);
 
 #endif
