@@ -135,6 +135,7 @@ t_map ft_validate_map(char *map_file_path)
 	new_line = get_next_line(map.fd);
 	while(check_line(&map, new_line))
 		new_line = get_next_line(map.fd);
+	close(map.fd);
 	check_borders(&map);
 	check_items(&map);
 	if (!map.is_valid)
