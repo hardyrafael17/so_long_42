@@ -21,6 +21,5 @@ void	ft_initialize_images(t_program *game)
 		"./assets/img/collect1.xpm");
 	game->image.exit = ft_new_sprite(game->mlx, "./assets/img/exit.xpm");
 	game->image.wall = ft_new_sprite(game->mlx, "./assets/img/wall.xpm");
-	game->image.erase = ft_new_sprite(game->mlx, \
-	"./assets/img/erase.xpm");
+	game->image.erase = ft_new_sprite(game->mlx, "./assets/img/erase.xpm");
 }
