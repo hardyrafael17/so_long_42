@@ -1,18 +1,22 @@
 - name: issue
 - todo:
   - test map
-  - print stats
-  - errors
-    - errno
   - norme
     no-relink
   - game finish
+  - game must be minimum 4 sprites wide
+  - close file "open"
 
 - currently working on:
+
+- done:
+  - print stats
+      print header
+      print info
+  - errors
+    - errno
   - errors
     - EXIT_FAILURE
-
-- done
   - EXIT_SUCCESS
   - game-play
   - events

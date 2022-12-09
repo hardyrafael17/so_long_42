@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	ft_check_args(argc, argv);
 	g_game.map = ft_validate_map(argv[1]);
 	init_game(&g_game);
-	ft_set_player_position(&g_game);
+	ft_set_player_position(&g_game, init);
 	g_game.mlx = mlx_init();
 	g_game.window = ft_new_window(g_game.mlx, ((g_game.map.width - 1) * 32), \
 		(g_game.map.height * 32) + 32, "so_long");

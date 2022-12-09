@@ -12,21 +12,44 @@
 
 #include "../so_long.h"
 
+static void ft_print_stats(t_program *param)
+{
+	int 	y;
+	char 	*item;
+	char 	*moves;
+	int		w;
+	void *mlx;
+	void *win;
+	void *erase;
+
+	mlx = param->mlx;
+	win = param->window.reference;
+	erase = param->image.erase.reference;
+	w = ft_create_trgb(0, 255, 255, 255);
+	moves = ft_itoa((int) param->record.move_count);
+	item = ft_itoa(param->record.collectables);
+	y = (param->map.height * 32) + 11;
+	mlx_put_image_to_window(mlx, win, erase, 0, y);
+	mlx_string_put(mlx, win, 5, y + 13, w, moves);
+	mlx_string_put(mlx, win, 60, y + 13, w, item);
+	free(moves);
+	free(item);
+}
+
 static void	ft_direction(size_t index, signed int direction, t_program *param)
 {
 	if (param->map.map_string[index + direction] == '0')
 	{
 		param->map.map_string[index] = '0';
 		param->map.map_string[index + direction] = 'P';
-		ft_set_player_position(param);
+		ft_set_player_position(param, move);
 		ft_paint_map(param);
 	}
 	else if (param->map.map_string[index + direction] == 'C')
 	{
-		param->record.collectables--;
 		param->map.map_string[index] = '0';
 		param->map.map_string[index + direction] = 'P';
-		ft_set_player_position(param);
+		ft_set_player_position(param, increment_all);
 		ft_paint_map(param);
 	}
 	else if (param->map.map_string[index + direction] == 'E' \
@@ -35,9 +58,10 @@ static void	ft_direction(size_t index, signed int direction, t_program *param)
 		param->record.game_over = 1;
 		param->map.map_string[index] = '0';
 		param->map.map_string[index + direction] = 'P';
-		ft_set_player_position(param);
+		ft_set_player_position(param, init);
 		ft_paint_map(param);
 	}
+	ft_print_stats(param);
 }
 
 void	update_map(enum e_Action action, t_program *param)

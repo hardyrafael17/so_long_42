@@ -15,4 +15,5 @@
 void	init_game(t_program *param)
 {
 	param->record.collectables = param->map.collectables;
+	param->record.stats_header_printed = 0;
 }

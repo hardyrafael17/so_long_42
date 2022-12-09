@@ -51,6 +51,9 @@ typedef struct s_vector
 /* All posible actions */
 enum e_Action {left = 5, right, up, down, quit, ignore_key};
 
+/* Action to take when setting player position */
+enum e_Record {increment_all, move, init};
+
 /* A pointer to the window and its size */
 typedef struct s_window {
 	void		*reference;
@@ -116,7 +119,7 @@ typedef struct s_program
 
 // FUNCTIONS
 void			update_map(enum e_Action action, t_program *game);
-void			ft_set_player_position(t_program *game);
+void			ft_set_player_position(t_program *game, enum e_Record action);
 void			init_game(t_program *param);
 int				key_update_game(int key, void *param);
 void			ft_paint_map(t_program *game);
