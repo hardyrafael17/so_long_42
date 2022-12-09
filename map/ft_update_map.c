@@ -58,8 +58,9 @@ static void	ft_direction(size_t index, signed int direction, t_program *param)
 		param->record.game_over = 1;
 		param->map.map_string[index] = '0';
 		param->map.map_string[index + direction] = 'P';
-		ft_set_player_position(param, init);
+		ft_set_player_position(param, move);
 		ft_paint_map(param);
+		ft_finish_game(param);
 	}
 	ft_print_stats(param);
 }

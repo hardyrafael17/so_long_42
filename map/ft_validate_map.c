@@ -24,7 +24,7 @@ t_map	*check_items(t_map *map)
 		else if (map->map_string[i] == 'P')
 			map->player++;
 		else if (map->map_string[i] == 'E')
-			map->enemies++;
+			map->exit++;
 		else if (map->map_string[i] == '1' || map->map_string[i] == '0' \
 			|| map->map_string[i] == '\n')
 		{
@@ -39,7 +39,7 @@ t_map	*check_items(t_map *map)
 		}
 		++i;
 	}
-	if (map->collectables < 1 && map->player != 1)
+	if (map->collectables < 1 || map->player != 1 || map->exit != 1)
 	{
 		free(map->map_string);
 		map->is_valid = 0;
@@ -79,7 +79,7 @@ t_map	initialize_map()
 	t_map	map;
 	map.width = 0;
 	map.height = 0;
-	map.enemies = 0;
+	map.exit = 0;
 	map.collectables = 0;
 	map.player = 0;
 	map.is_valid = 1;

@@ -4,12 +4,14 @@
   - norme
     no-relink
   - game finish
-  - game must be minimum 4 sprites wide
+  - check for leaks
+  - free memory when exiting through the red button
 
 - currently working on:
-  - close file "open"
+  - game finish
 
 - done:
+  - close file "open"
   - print stats
       print header
       print info
@@ -24,3 +26,7 @@
     - end actions
     - set game record status
       - collectables - (done);
+
+  - Solved bugs:
+    - bug: more than one player allowed
+    - game must be minimum 4 sprites wide (not needed)

@@ -34,8 +34,10 @@ void	update_game(enum e_Action action, t_program *game)
 	{
 	  free(game->map.map_string);
 	  exit(0);
+	} else if (!game->record.game_over)
+	{
+		update_map(action, game);
 	}
-	update_map(action, game);
 }
 
 int	key_update_game(int key, void *param)

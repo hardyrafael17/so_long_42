@@ -87,7 +87,7 @@ typedef struct s_map {
 	size_t		width;
 	size_t		collectables;
 	size_t		player;
-	size_t		enemies;
+	size_t		exit;
 }				t_map;
 
 typedef struct s_assets {
@@ -137,5 +137,6 @@ t_image		ft_new_sprite(void *mlx, char *path);
 t_window	ft_new_window(void *mlx, int widht, int height, char *name);
 t_color		new_color(int r, int g, int b, int a);
 int				ft_create_trgb(int t, int r, int g, int b);
+void			ft_finish_game(t_program *param);
 
 #endif
