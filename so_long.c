@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 	ft_set_player_position(&g_game);
 	g_game.mlx = mlx_init();
 	g_game.window = ft_new_window(g_game.mlx, ((g_game.map.width - 1) * 32), \
-		(g_game.map.height * 32), "so_long");
+		(g_game.map.height * 32) + 32, "so_long");
 	ft_initialize_images(&g_game);
 	ft_paint_map(&g_game);
 	mlx_key_hook(g_game.window.reference, *key_update_game, &g_game);
