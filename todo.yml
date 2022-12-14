@@ -3,14 +3,13 @@
   - test map
   - norme
     no-relink
-  - game finish
   - check for leaks
   - free memory when exiting through the red button
 
 - currently working on:
-  - game finish
 
 - done:
+  - game finish
   - close file "open"
   - print stats
       print header

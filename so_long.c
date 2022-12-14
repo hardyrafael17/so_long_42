@@ -14,9 +14,10 @@
 
 t_program	g_game;
 
-int	main(int argc, char *argv[])
+int	 main(int argc, char *argv[])
 {
 	ft_check_args(argc, argv);
+
 	g_game.map = ft_validate_map(argv[1]);
 	init_game(&g_game);
 	ft_set_player_position(&g_game, init);
@@ -27,5 +28,7 @@ int	main(int argc, char *argv[])
 	ft_paint_map(&g_game);
 	mlx_key_hook(g_game.window.reference, *key_update_game, &g_game);
 	mlx_loop(g_game.mlx);
+
 	return (0);
 }
+
