@@ -64,19 +64,20 @@ static void	check_borders(t_map *map)
 		if (i > (map->width * map->height) - map->width && i < (map->width \
 			* map->height) - 2 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if ((i + 2)%map->width == 0 && map->map_string[i] != '1')
+		if ((i + 2) % map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
-		if (i%map->width == 0 && map->map_string[i] != '1')
+		if (i % map->width == 0 && map->map_string[i] != '1')
 			map->is_valid = 0;
 		++i;
 	}
-	if(!map->is_valid)
+	if (!map->is_valid)
 		free(map->map_string);
 }
 
-t_map	initialize_map()
+t_map	initialize_map(void)
 {
 	t_map	map;
+
 	map.width = 0;
 	map.height = 0;
 	map.exit = 0;
@@ -84,31 +85,29 @@ t_map	initialize_map()
 	map.player = 0;
 	map.is_valid = 1;
 	map.map_string = NULL;
-
-	return(map);
+	return (map);
 }
 
-static int check_line(t_map *map, char *line)
+static	int	check_line(t_map *map, char *line)
 {
 	char	*line_holder;
 
-	if(!line)
+	if (!line)
 		return (0);
-	if(!map->width)
+	if (!map->width)
 		map->width = ft_strlen(line);
-	if(line[map->width - 1] != '\n')
+	if (line[map->width - 1] != '\n')
 	{
 		line_holder = line;
 		line = ft_strjoin(line, "\n");
 		free(line_holder);
 	}
-	if(map->width != ft_strlen(line))
+	if (map->width != ft_strlen(line))
 	{
 		map->is_valid = 0;
 		return (0);
 	}
-
-	if(!map->map_string)
+	if (!map->map_string)
 	{
 		map->map_string = ft_strjoin(line, "");
 		free(line);
@@ -118,22 +117,23 @@ static int check_line(t_map *map, char *line)
 		line_holder = map->map_string;
 		map->map_string = ft_strjoin(map->map_string, line);
 		free (line_holder);
+		free(line);
 	}
 	map->height++;
 	return (1);
 }
 
-t_map ft_validate_map(char *map_file_path)
+t_map	ft_validate_map(char *map_file_path)
 {
 	char	*new_line;
 	t_map	map;
 
 	map = initialize_map();
 	map.fd = open(map_file_path, O_RDONLY);
-	if(map.fd == -1)
+	if (map.fd == -1)
 		ft_handle_error(6, NULL);
 	new_line = get_next_line(map.fd);
-	while(check_line(&map, new_line))
+	while (check_line(&map, new_line))
 		new_line = get_next_line(map.fd);
 	close(map.fd);
 	check_borders(&map);
@@ -142,4 +142,3 @@ t_map ft_validate_map(char *map_file_path)
 		ft_handle_error(2, "Error: Invalid Map");
 	return (map);
 }
-
