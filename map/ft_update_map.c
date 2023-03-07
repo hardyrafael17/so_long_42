@@ -12,26 +12,22 @@
 
 #include "../so_long.h"
 
-static void ft_print_stats(t_program *param)
+static void	ft_print_stats(t_program *param)
 {
-	int 	y;
-	char 	*item;
-	char 	*moves;
+	int		y;
+	char	*item;
+	char	*moves;
 	int		w;
-	void *mlx;
-	void *win;
-	void *erase;
+	void	*erase;
 
-	mlx = param->mlx;
-	win = param->window.reference;
 	erase = param->image.erase.reference;
 	w = ft_create_trgb(0, 255, 255, 255);
 	moves = ft_itoa((int) param->record.move_count);
 	item = ft_itoa(param->record.collectables);
 	y = (param->map.height * 32) + 11;
-	mlx_put_image_to_window(mlx, win, erase, 0, y);
-	mlx_string_put(mlx, win, 5, y + 13, w, moves);
-	mlx_string_put(mlx, win, 60, y + 13, w, item);
+	mlx_put_image_to_window(param->mlx, param->window.reference, erase, 0, y);
+	mlx_string_put(param->mlx, param->window.reference, 5, y + 13, w, moves);
+	mlx_string_put(param->mlx, param->window.reference, 60, y + 13, w, item);
 	free(moves);
 	free(item);
 }

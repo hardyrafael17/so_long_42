@@ -41,7 +41,7 @@ void	ft_set_player_position(t_program *game, enum e_Record action)
 	}
 	if (action == move)
 		game->record.move_count++;
-	else if(action == increment_all)
+	else if (action == increment_all)
 	{
 		game->record.collectables--;
 		game->record.move_count++;

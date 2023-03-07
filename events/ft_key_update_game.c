@@ -30,11 +30,12 @@ enum e_Action	validate_key(int key)
 
 void	update_game(enum e_Action action, t_program *game)
 {
-	if(action == quit)
+	if (action == quit)
 	{
-	  free(game->map.map_string);
-	  exit(0);
-	} else if (!game->record.game_over)
+		free(game->map.map_string);
+		exit(0);
+	}
+	else if (!game->record.game_over)
 	{
 		update_map(action, game);
 	}

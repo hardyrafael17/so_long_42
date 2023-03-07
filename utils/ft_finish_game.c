@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/24 03:14:24 by hjimenez          #+#    #+#             */
+/*   Updated: 2022/11/24 03:46:27 by hjimenez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-void			ft_finish_game(t_program *param)
+void	ft_finish_game(t_program *param)
 {
-	char 	*moves;
+	char	*moves;
 	int		w;
-	void *mlx;
-	void *win;
-	void *erase;
+	void	*mlx;
+	void	*win;
+	void	*erase;
 
 	mlx = param->mlx;
 	win = param->window.reference;
@@ -15,7 +27,7 @@ void			ft_finish_game(t_program *param)
 	moves = ft_itoa((int) param->record.move_count);
 	mlx_put_image_to_window(mlx, win, erase, 0, 0);
 	mlx_string_put(mlx, win, 2, 12, w, "Game Over!");
-	if(param->map.width > 6)
+	if (param->map.width > 6)
 	{
 		mlx_put_image_to_window(mlx, win, erase, 0, 15);
 		mlx_string_put(mlx, win, 2, 26, w, "Movimientos: ");

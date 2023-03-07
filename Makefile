@@ -2,13 +2,13 @@ NAME			=	so_long
 #detect OS
 O_SYSTEM := $(shell uname)
 ifeq ($(O_SYSTEM), Linux)
-	LIBMLX			=	libs/mlx_linux/mlxlib.a
-	OS_LIB_DIR		=	libs/mlx_linux
-	LIBRARY_LINK_MLX=	-Llibs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+	LIBMLX			=	../mlx_linux/libmlx.a
+	OS_LIB_DIR		=	../mlx_linux
+	LIBRARY_LINK_MLX=	-L../mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 else
-	LIBMLX			=	libs/mlx/mlxlib.a
-	OS_LIB_DIR		=	libs/mlx
-	LIBRARY_LINK_MLX=	-Llibs/mlx -lmlx -framework OpenGL -framework AppKit
+	LIBMLX			=	../mlx/libmlx.a
+	OS_LIB_DIR		=	../mlx
+	LIBRARY_LINK_MLX=	-L../mlx -lmlx -framework OpenGL -framework AppKit
 endif
 # Files
 LIBFT			=   libs/libft/libft.a
@@ -30,7 +30,6 @@ GCC				=	gcc
 CFLAGS			=	-g -Wall -Wextra -Werror
 RM				=	rm -rf
 
-#AR				=	ar rcs
 LIBRARY_LINK_FT	=	-Llibs/libft -lft
 
 # Rules

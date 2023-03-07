@@ -14,32 +14,9 @@
 
 t_map	*check_items(t_map *map)
 {
-	size_t	i;
-
-	i = 0;
-	while (map->map_string[i])
-	{
-		if (map->map_string[i] == 'C')
-			map->collectables++;
-		else if (map->map_string[i] == 'P')
-			map->player++;
-		else if (map->map_string[i] == 'E')
-			map->exit++;
-		else if (map->map_string[i] == '1' || map->map_string[i] == '0' \
-			|| map->map_string[i] == '\n')
-		{
-			++i;
-			continue ;
-		}
-		else
-		{
-		map->is_valid = 0;
-			free(map->map_string);
-			return (map);
-		}
-		++i;
-	}
-	if (map->collectables < 1 || map->player != 1 || map->exit != 1)
+	check_each_item(map);
+	if (!map->is_valid || map->collectables < 1 || \
+		map->player != 1 || map->exit != 1)
 	{
 		free(map->map_string);
 		map->is_valid = 0;
@@ -60,14 +37,14 @@ static void	check_borders(t_map *map)
 	while (map->map_string[i])
 	{
 		if (i < map->width - 2 && map->map_string[i] != '1')
-			map->is_valid = 0;
+				map->is_valid = 0;
 		if (i > (map->width * map->height) - map->width && i < (map->width \
 			* map->height) - 2 && map->map_string[i] != '1')
-			map->is_valid = 0;
+				map->is_valid = 0;
 		if ((i + 2) % map->width == 0 && map->map_string[i] != '1')
-			map->is_valid = 0;
+				map->is_valid = 0;
 		if (i % map->width == 0 && map->map_string[i] != '1')
-			map->is_valid = 0;
+				map->is_valid = 0;
 		++i;
 	}
 	if (!map->is_valid)
@@ -108,17 +85,9 @@ static	int	check_line(t_map *map, char *line)
 		return (0);
 	}
 	if (!map->map_string)
-	{
-		map->map_string = ft_strjoin(line, "");
-		free(line);
-	}
+		check_line_helper1(map, line);
 	else
-	{
-		line_holder = map->map_string;
-		map->map_string = ft_strjoin(map->map_string, line);
-		free (line_holder);
-		free(line);
-	}
+		check_line_helper(map, line);
 	map->height++;
 	return (1);
 }
@@ -137,8 +106,10 @@ t_map	ft_validate_map(char *map_file_path)
 		new_line = get_next_line(map.fd);
 	close(map.fd);
 	check_borders(&map);
+	if (!map.is_valid)
+		ft_handle_error(2, "Error: Invalid Map Borders, must be all 1\n");
 	check_items(&map);
 	if (!map.is_valid)
-		ft_handle_error(2, "Error: Invalid Map");
+		ft_handle_error(2, "Error: Invalid map configuration\n");
 	return (map);
 }

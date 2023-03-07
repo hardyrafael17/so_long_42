@@ -14,14 +14,13 @@
 
 static void	ft_stats_header_string(t_program *game)
 {
+	int		y;
+	int		w;
+	void	*mlx;
+	void	*win;
+
 	if (game->record.stats_header_printed)
 		return ;
-
-	int 	y;
-	int		w;
-	void *mlx;
-	void *win;
-
 	mlx = game->mlx;
 	win = game->window.reference;
 	w = ft_create_trgb(0, 255, 255, 255);
@@ -71,8 +70,7 @@ void	ft_paint_map(t_program *game)
 		mlx_put_image_to_window(game->mlx, game->window.reference, \
 			game->image.background.reference, width, height);
 		mlx_put_image_to_window(game->mlx, game->window.reference, \
-			ft_get_sprite(game, str[index]), width, height);
-		index++;
+			ft_get_sprite(game, str[index++]), width, height);
 	}
 	ft_stats_header_string(game);
 }

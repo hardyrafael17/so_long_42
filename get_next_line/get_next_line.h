@@ -15,6 +15,8 @@
 # include <stdlib.h>
 # include "../libs/libft/libft.h"
 
+# define BUFFER_SIZE 42
+
 typedef struct fd_data_list
 {
 	int			fd;

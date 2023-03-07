@@ -6,7 +6,7 @@
 /*   By: hjimenez <hjimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 00:00:43 by havoc             #+#    #+#             */
-/*   Updated: 2022/11/24 02:57:00 by hjimenez         ###   ########.fr       */
+/*   Updated: 20t2/11/24 02:57:00 by hjimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
-# include <string.h>
 
 # ifndef ANIMATION_FRAMES
 #  define ANIMATION_FRAMES 10
 # endif
 
 # if __linux__
-#  include "libs/mlx_linux/mlx.h"
+#  include "../mlx_linux/mlx.h"
 #  define UP	119
 #  define DOWN	115
 #  define LEFT	97
 #  define RIGHT 100
 #  define ESC	65307
 # else 
-#  include "libs/mlx/mlx.h"
+#  include "../mlx/mlx.h"
 #  define UP	13
 #  define DOWN	1
 #  define LEFT	0
@@ -138,5 +137,7 @@ t_window		ft_new_window(void *mlx, int widht, int height, char *name);
 t_color			new_color(int r, int g, int b, int a);
 int				ft_create_trgb(int t, int r, int g, int b);
 void			ft_finish_game(t_program *param);
-
+t_map			*check_each_item(t_map *map);
+void			check_line_helper(t_map *map, char *line);
+void			check_line_helper1(t_map *map, char *line);
 #endif

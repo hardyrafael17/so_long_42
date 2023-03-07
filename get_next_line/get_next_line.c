@@ -12,8 +12,6 @@
 
 #include "get_next_line.h"
 
-int BUFFER_SIZE=42;
-
 char	*get_next_line(int fd)
 {
 	t_fd		*fd_list_data;
