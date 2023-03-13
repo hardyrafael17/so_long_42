@@ -12,25 +12,6 @@
 
 #include "get_next_line.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*puntero;
-	size_t	nbytes;
-	size_t	i;
-
-	i = 0;
-	nbytes = size * nmemb;
-	puntero = malloc(nbytes);
-	if (!puntero)
-		return (NULL);
-	while (i < nbytes)
-	{
-		*(puntero + i) = (char) '\0';
-		i++;
-	}
-	return (puntero);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*joined;

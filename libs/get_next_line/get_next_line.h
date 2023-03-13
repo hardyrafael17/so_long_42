@@ -32,7 +32,6 @@ size_t			ft_check_nl(char *read_buffer, size_t size);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 char			*ft_strjoin(char const *s1, char const *s2);
-void			*ft_calloc(size_t count, size_t size);
 char			*get_next_line(int fd);
 int				ft_append(char *to_append, t_fd *buffer_to_update);
 char			*ft_return_line(t_fd *buffer_to_update);

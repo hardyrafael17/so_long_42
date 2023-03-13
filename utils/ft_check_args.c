@@ -25,15 +25,18 @@ static void	ft_print_usage(void)
 
 void	ft_check_args(int argc, char *argv[])
 {
+	int	length;
+
+	length = ft_strlen(argv[1]);
 	if (argc > 2)
 	{
 		printf("Too many argumements, only one argument allowed,");
 		printf(" a valid map!\n");
 		exit(1);
 	}
-	else if (argc < 2)
+	else if (argc < 2 || length < 5)
 	{
-		printf("Please provide a valid map as argument\n");
+		printf("Please provide a valid map.ber as argument, format *.map.ber\n");
 		exit(1);
 	}
 	if (!ft_strncmp(argv[1], "-h", 3) || !(ft_strncmp(argv[1], "--help", 7)))
@@ -41,9 +44,10 @@ void	ft_check_args(int argc, char *argv[])
 		ft_print_usage();
 		exit(0);
 	}
-	else if (ft_strncmp(argv[1], "map.ber", 8))
+	else if (length > 4 && ft_strncmp(argv[1] + length - 4, ".ber", 5))
 	{
-		printf("Map name must be 'map.ber'!\n");
+		printf("test %s\n", argv[1] + length - 4);
+		printf("Map name must be in the format of '*.ber'!\n");
 		exit(1);
 	}
 }
