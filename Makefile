@@ -12,7 +12,7 @@ else
 endif
 # Files
 LIBFT					=   libs/libft/libft.a
-LIBFTPRINTFT			=   libs/ft_printf/libftprintft.a
+LIBFTPRINTFT			=   libs/ft_printf/libftprintf.a
 
 # Sources and objects
 GNL_FILES		=	$(wildcard libs/get_next_line/*.c)
@@ -56,14 +56,14 @@ $(LIBFTPRINTFT):
 clean:
 	$(RM) $(OBJS)
 	make clean -C libs/libft
-	make clean -C libs/ft_print
+	make clean -C libs/ft_printf
 	make clean -C $(OS_LIB_DIR) 
 	make clean -C $(OS_LIB_DIR) 
 
 fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C libs/libft
-	make fclean -C libs/ft_print
+	make fclean -C libs/ft_printf
 	make clean	-C $(OS_LIB_DIR) 
 
 re: fclean all

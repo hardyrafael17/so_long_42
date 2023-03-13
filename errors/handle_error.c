@@ -19,6 +19,6 @@ void	ft_handle_error(int error, const char *str_error)
 		perror("Error");
 		exit(error);
 	}
-	printf("Error: %s.\n", str_error);
+	ft_printf("Error: %s.\n", str_error);
 	exit (error);
 }
