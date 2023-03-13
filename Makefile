@@ -2,19 +2,19 @@ NAME			=	so_long
 #detect OS
 O_SYSTEM := $(shell uname)
 ifeq ($(O_SYSTEM), Linux)
-	LIBMLX			=	../mlx_linux/libmlx.a
-	OS_LIB_DIR		=	../mlx_linux
-	LIBRARY_LINK_MLX=	-L../mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
+	LIBMLX			=	./libs/mlx_linux/libmlx.a
+	OS_LIB_DIR		=	./libs/mlx_linux
+	LIBRARY_LINK_MLX=	-L./libs/mlx_linux -lmlx -Imlx_linux -lXext -lX11 -lm -lz
 else
 	LIBMLX			=	../mlx/libmlx.a
 	OS_LIB_DIR		=	../mlx
-	LIBRARY_LINK_MLX=	-L../mlx -lmlx -framework OpenGL -framework AppKit
+	LIBRARY_LINK_MLX=	-L./libs/mlx -lmlx -framework OpenGL -framework AppKit
 endif
 # Files
 LIBFT			=   libs/libft/libft.a
 
 # Sources and objects
-GNL_FILES		=	$(wildcard get_next_line/*.c)
+GNL_FILES		=	$(wildcard libs/get_next_line/*.c)
 MAP				=	$(wildcard map/*.c)
 UTILS			=	$(wildcard utils/*.c)
 ERRORS			=	$(wildcard errors/*.c)

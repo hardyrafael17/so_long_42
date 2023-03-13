@@ -12,7 +12,7 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "get_next_line/get_next_line.h"
+# include "./libs/get_next_line/get_next_line.h"
 # include "libs/libft/libft.h"
 # include <fcntl.h>
 # include <stddef.h>
@@ -25,14 +25,14 @@
 # endif
 
 # if __linux__
-#  include "../mlx_linux/mlx.h"
+#  include "libs/mlx_linux/mlx.h"
 #  define UP	119
 #  define DOWN	115
 #  define LEFT	97
 #  define RIGHT 100
 #  define ESC	65307
 # else 
-#  include "../mlx/mlx.h"
+#  include "libs/mlx/mlx.h"
 #  define UP	13
 #  define DOWN	1
 #  define LEFT	0
