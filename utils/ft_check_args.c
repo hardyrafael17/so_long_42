@@ -29,24 +29,19 @@ void	ft_check_args(int argc, char *argv[])
 {
 	int	length;
 
+	if (argc != 2)
+	{
+		ft_write("One argument needed, a valid *.ber map\n", 2);
+		exit(1);
+	}
 	length = ft_strlen(argv[1]);
-	if (argc > 2)
-	{
-		ft_write("Too many argumements, only one argument allowed,", 2);
-		ft_write(" a valid map!\n", 2);
-		exit(1);
-	}
-	else if (argc < 2 || length < 5)
-	{
-		ft_write("Please input a valid map.ber argument, format *.map.ber\n", 2);
-		exit(1);
-	}
 	if (!ft_strncmp(argv[1], "-h", 3) || !(ft_strncmp(argv[1], "--help", 7)))
 	{
 		ft_print_usage();
 		exit(0);
 	}
-	else if (length > 4 && ft_strncmp(argv[1] + length - 4, ".ber", 5))
+	else if ((length > 4 && ft_strncmp(argv[1] + length - 4, ".ber", 5)) || \
+	length < 4)
 	{
 		ft_write("Map name must be in the format of '*.ber'!\n", 2);
 		exit(1);
