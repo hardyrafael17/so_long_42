@@ -12,6 +12,18 @@
 
 #include "../so_long.h"
 
+void	ft_write(char *message, int channel)
+{
+	int	count;
+
+	count = 0;
+	while (message[count])
+	{
+		write (channel, &message[count], 1);
+		count++;
+	}
+}
+
 t_image	ft_new_image(void *mlx, int width, int height)
 {
 	t_image	img;

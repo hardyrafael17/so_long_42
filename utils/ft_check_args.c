@@ -14,14 +14,14 @@
 
 static void	ft_print_usage(void)
 {
-	ft_printf("To start the game please type 'so_long map.ber'\n\n");
-	ft_printf("To move, use the keys 'a', 's', 'd', 'w', left, ");
-	ft_printf("down, right and ");
-	ft_printf("up respectively,");
-	ft_printf("\n use the 'Esc' to exit the game without confirm");
-	ft_printf("ation.\n\n The objective is to collect all the gifts,");
-	ft_printf(" then exit the game with the girl\n\n");
-	ft_printf("Enjoy!!!!\n\n");
+	ft_write("To start the game please type 'so_long map.ber'\n\n", 1);
+	ft_write("To move, use the keys 'a', 's', 'd', 'w', left, ", 1);
+	ft_write("down, right and ", 1);
+	ft_write("up respectively,", 1);
+	ft_write("\n use the 'Esc' to exit the game without confirm", 1);
+	ft_write("ation.\n\n The objective is to collect all the gifts,", 1);
+	ft_write(" then exit the game with the girl\n\n", 1);
+	ft_write("Enjoy!!!!\n\n", 1);
 	exit(0);
 }
 
@@ -32,13 +32,13 @@ void	ft_check_args(int argc, char *argv[])
 	length = ft_strlen(argv[1]);
 	if (argc > 2)
 	{
-		ft_printf("Too many argumements, only one argument allowed,");
-		ft_printf(" a valid map!\n");
+		ft_write("Too many argumements, only one argument allowed,", 2);
+		ft_write(" a valid map!\n", 2);
 		exit(1);
 	}
 	else if (argc < 2 || length < 5)
 	{
-		ft_printf("Please provide a valid map.ber argument, format *.map.ber\n");
+		ft_write("Please input a valid map.ber argument, format *.map.ber\n", 2);
 		exit(1);
 	}
 	if (!ft_strncmp(argv[1], "-h", 3) || !(ft_strncmp(argv[1], "--help", 7)))
@@ -48,8 +48,7 @@ void	ft_check_args(int argc, char *argv[])
 	}
 	else if (length > 4 && ft_strncmp(argv[1] + length - 4, ".ber", 5))
 	{
-		ft_printf("test %s\n", argv[1] + length - 4);
-		ft_printf("Map name must be in the format of '*.ber'!\n");
+		ft_write("Map name must be in the format of '*.ber'!\n", 2);
 		exit(1);
 	}
 }

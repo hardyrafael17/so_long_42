@@ -14,7 +14,6 @@
 # define SO_LONG_H
 # include "./libs/get_next_line/get_next_line.h"
 # include "libs/libft/libft.h"
-# include "libs/ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -141,4 +140,5 @@ void			ft_finish_game(t_program *param);
 t_map			*check_each_item(t_map *map);
 void			check_line_helper(t_map *map, char *line);
 void			check_line_helper1(t_map *map, char *line);
+void			ft_write(char *message, int channel);
 #endif

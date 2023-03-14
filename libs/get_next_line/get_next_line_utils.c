@@ -12,6 +12,25 @@
 
 #include "get_next_line.h"
 
+void	*ft_calloc2(size_t nmemb, size_t size)
+{
+	char	*pointer;
+	size_t	nbytes;
+	size_t	i;
+
+	i = 0;
+	nbytes = size * nmemb;
+	pointer = malloc(nbytes);
+	if (!pointer)
+		return (NULL);
+	while (i < nbytes)
+	{
+		*(pointer + i) = (char) '\0';
+		i++;
+	}
+	return (pointer);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*joined;
@@ -20,7 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = (ft_strlcpy_strlen(NULL, s1, 0) + ft_strlcpy_strlen(NULL, s2, 0)) + 1;
-	joined = ft_calloc(len, sizeof(char));
+	joined = ft_calloc2(len, sizeof(char));
 	if (!joined)
 		return (NULL);
 	ft_strlcat(joined, s1, len);
@@ -37,9 +56,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	s_size_str = ft_strlcpy_strlen(NULL, s, 0);
 	if (len > s_size_str)
-		substring = ft_calloc(s_size_str, sizeof(char));
+		substring = ft_calloc2(s_size_str, sizeof(char));
 	else
-		substring = ft_calloc(len + 1, sizeof(char));
+		substring = ft_calloc2(len + 1, sizeof(char));
 	if (!substring)
 		return (NULL);
 	if (start > s_size_str)
